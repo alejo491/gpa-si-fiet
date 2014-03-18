@@ -1,0 +1,48 @@
+/*
+ * IVORY Framework - http://weice.in/ivory
+ * 
+ * Developed by Lakshmikanth Vallampati - kanth.vallampati@gmail.com
+ * Licensed under GPLv2 
+TEsr
+ * 
+ */
+
+/* ---- Table ---- */
+table {
+	width: 100%;
+	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	border: solid #ccc 1px;
+	box-shadow: none;
+}   
+th {
+	font-size: 14px; 
+	line-height: 24px;
+	text-align: center;
+	background-color: white;
+}
+td{
+	font-size:14px;
+}
+tr {
+	background-color: white;
+}
+td, th {
+	border: solid #ccc 1px;
+	padding: 10px; 
+	text-align: center;
+}
+
+div.c8 
+{
+    padding-left: 0px;
+    padding-right: 0px;
+    position: absolute;
+}
+
+html, body, div#contenido, div#main, div#impresion, div.c12, div.c8, div.pagina{
+	height: 100%;
+}
+
+#btnImprimir {
+	display: none;
+}

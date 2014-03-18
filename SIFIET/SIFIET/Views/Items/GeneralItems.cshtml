@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SIFIET.Models.ViewModels.ItemReportViewModel>
+@{
+    ViewBag.Title = "Listado General de Items";
+}
+
+<h2>Listado General de Items del Reporte @ViewBag.reporte.Description</h2>
+<div class="alert success">
+    @TempData["Success"]
+</div>
+<br/>
+<div>
+    @Html.ActionLink("Crear Item survey", "Create", "ItemSurveys", new { id = ViewBag.IdReport }, htmlAttributes: new { @class = "ebutton blue" })&nbsp;
+    @Html.ActionLink("Crear Item Datos", "Create", "ItemData", new { id = ViewBag.IdReport }, htmlAttributes: new { @class = "ebutton blue" }) &nbsp;
+</div>
+ <div>
+
+                                                                                       
+ </div>
+ 
+
+<table>
+    <tr>
+        <th>
+            Orden
+        </th>
+        <th>
+            Descripción
+        </th>
+        <th>
+            Tipo de grafico
+        </th>
+        
+       <th>
+            Acciones
+        </th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sentence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GraphicType)
+        </td>
+      
+        <td>
+            @if(item.DataNumber == 0)
+            {
+                @Html.ActionLink(" ", "Delete", "ItemSurveys", new { id = item.Id }, htmlAttributes: new { @class = "btndelete", @title = "Eliminar" })
+            }
+            @if (item.DataNumber == 1)
+            {
+                @Html.ActionLink(" ", "Delete", "ItemData", new { id = item.Id }, htmlAttributes: new { @class = "btndelete", @title = "Eliminar" })
+            }
+            
+        </td>
+    </tr>
+}
+
+</table>
+<div class="c12">
+        <h2> </h2>
+        <h2> </h2>
+        
+
+        @*<div class="validation-summary-success">@TempData["Success"]</div>*@
+
+        <p>
+            @Html.ActionLink("Regresar al listado de reportes", "Index", "Reports", new { id = ViewBag.IdReport }, htmlAttributes: new { @class = "ebutton blue" })
+        </p>
+        </div>

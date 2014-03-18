@@ -1,0 +1,49 @@
+﻿@model SIFIET.Models.Survey
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="grid">
+	<div class="c12">
+    		<h2>  Eliminar Encuesta</h2>
+	</div>
+	<div class="c12">
+    	<div class="c9 first" id=”contenido”>
+        	 <h3>
+        
+        Está seguro que desea eliminar la encuesta?
+        </h3>
+        <div class="grid">
+        <fieldset>
+            <div class="display-label">
+                <h3>
+                    Nombre</h3>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <br />
+            <div class="display-label">
+                <h3>
+                    Objetivo</h3>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Aim)
+            </div>
+            <br />
+        </fieldset>
+        @using (Html.BeginForm())
+        {
+            <p>
+                <input type="submit" value="Eliminar" class="ebutton2 blue" />
+                @Html.ActionLink("Cancelar", "Index", null ,htmlAttributes: new {@class = "ebutton blue"})
+            </p>
+        }
+        </div>
+    	</div>
+    	<div class="c3 last" id=”layout”>@Html.Partial("_LayoutSideBar")</div>
+	</div>
+	&nbsp;
+</div>
+
+

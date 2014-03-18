@@ -1,0 +1,35 @@
+﻿@model SIFIET.Models.Thesis
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Tesis</h2>
+
+<h3>¿Está seguro que desea eliminar la Tesis?</h3>
+<fieldset>
+    <legend>Tesis</legend>
+
+    <div class="display-label">Estudio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Study.Grade)
+    </div>
+
+    <div class="display-label">Título</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Descripción</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)<a href="Delete.cshtml">Delete.cshtml</a>
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <div>
+        <input type="submit" value="Eliminar" class="ebutton blue" /> 
+        </div>
+        <div>
+             @Html.ActionLink("Regresar", "Index","", htmlAttributes: new { @class = "ebutton blue" })
+        </div>
+}

@@ -1,0 +1,137 @@
+﻿@model ICollection<SIFIET.Models.Post> 
+
+@{
+    ViewBag.Title = "Detalles";
+}
+<script type="text/javascript">     
+    $(document).ready(function () {
+        $.ajax({
+            type : "POST",
+            url :  "@(Url.Action("CarrucelImage", "File", new { id = Model.ElementAt(0).Id }))", 
+            traditional : true,
+            data : {}, 
+            success : function(data){
+                $("#carrucelshowpost").html(data); 
+            }
+        });  
+         $.ajax({
+            type : "POST",
+            url :  "@(Url.Action("GaleryPost", "File", new { id = Model.ElementAt(0).Id }))", // se dirige a la acción "Index" del controlado UploadFile
+            traditional : true,
+            data : {  }, // se agregan los parametros necesarios para la funcionalidad
+            success : function(data){
+                $("#Archivos").html(data); // carga el código html en el div "VisorNoticias", este código es retornado por el controlador.
+            }
+        }); 
+    }) 
+</script>
+<div id="idpost" style="display:none">@Model.ElementAt(0).Id</div>
+<div class="center">
+    <div class="display-field">    
+        <div class="shownoticiatitle">
+            <h2>@Html.DisplayFor(model => model.ElementAt(0).Title)</h2>
+        </div>
+    </div>
+    <div>
+        <div id="carrucelshowpost" class="left">
+    
+        </div>
+        <div>
+            <div class="display-field" align="justify">                
+                <div id="texto-sin-formato" style="display:none">@Html.DisplayTextFor(model => model.ElementAt(0).Content);</div>
+                <div id="texto-con-formato"></div>
+                <script>DarFormato();</script>
+            </div>
+            <div id = "Archivos"></div>
+            <div class="display-field">
+                <span style="color: black;">Publicado por : </span>
+                @Html.DisplayFor(model => model.ElementAt(0).User.FirstNames)
+                @Html.DisplayFor(model => model.ElementAt(0).User.LastNames)
+            </div>
+            <div class="display-field">
+                <span style="color: black;">Fecha de Publicación :</span> 
+                @Html.DisplayFor(model => model.ElementAt(0).PublicationDate)
+            </div>
+            <div class="display-field">
+                <span style="color: black;">Última Modificación :</span>
+                @Html.DisplayFor(model => model.ElementAt(0).UpdateDate)
+            </div>
+        </div>
+        @*<div class="barra_starboxLike">
+                    <div class="contenidocenter">
+                        @if (Model.ElementAt(1).Autorized == -2){
+                            <div>Para poder dar Like, Calificar la noticia o comentarla debes registrar tus datos iniciales primero</div><br />
+                        }
+                        <div class="left">
+                            @if (Model.ElementAt(1).Autorized == 0)
+                            {
+                                @Html.ActionLink(" ", "", new { }, htmlAttributes: new { @class = "ebutton btnlike", @id = "LinkLike", @onclick = "ClickLike('" + Model.ElementAt(0).Id + "', '0', '')", @href = "javascript:void(0);" })
+                                @Html.ActionLink(" ", "", new { }, htmlAttributes: new { @class = "ebutton btnnolike", @id = "LinknoLike", @onclick = "ClickLike('" + Model.ElementAt(0).Id + "', '1', '" + Model.ElementAt(1).Id + "')", @href = "javascript:void(0);", style = "display:none" })
+                            }
+                            @if (Model.ElementAt(1).Autorized == 1)
+                            {
+                                @Html.ActionLink(" ", "", new { }, htmlAttributes: new { @class = "ebutton btnlike", @id = "LinkLike", @onclick = "ClickLike('" + Model.ElementAt(0).Id + "', '0', '')", @href = "javascript:void(0);", style = "display:none" })
+                                @Html.ActionLink(" ", "", new { }, htmlAttributes: new { @class = "ebutton btnnolike", @id = "LinknoLike", @onclick = "ClickLike('" + Model.ElementAt(0).Id + "', '1', '" + Model.ElementAt(1).Id + "')", @href = "javascript:void(0);" })                    
+                            } 
+                        </div>               
+                        <div class ="left" id="NumLike"> &nbsp&nbsp&nbsp @Model.ElementAt(1).Estate Usuarios les Gusta</div>                                              
+                        @{
+                            string id = "";}
+                            @if (Model.ElementAt(1).Autorized != -1 && Model.ElementAt(1).Autorized != -2)
+                            {
+                                if (Model.ElementAt(2).Main == 0)
+                                {
+                                    <script>setQualification('@Model.ElementAt(2).Main','0')</script>
+                                }
+                                else
+                                {
+                                    <script>setQualification('@Model.ElementAt(2).Main', '1')</script>
+                                }
+                                <div id="startbox" class="left" style = "margin-left :15px ">  
+                                @for (var i = 1; i <= 5; i++)
+                                {
+                                    id = "star" + i;
+                                    if (i <= Model.ElementAt(2).Main)
+                                    {
+                                        <div class="startselecteduser" id=@id onmouseover="hover('@i')" onmouseout="unhover()" onclick="calificar('@i','@Model.ElementAt(0).Id','@Model.ElementAt(2).Id')"></div>
+                                    }
+                                    else
+                                    {
+                                        if (Model.ElementAt(2).Main == 0)
+                                        {
+                                            <div class="startunselected" id=@id onmouseover="hover('@i')" onmouseout="unhover()" onclick="calificar('@i','@Model.ElementAt(0).Id','')"></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="startunselected" id=@id onmouseover="hover('@i')" onmouseout="unhover()" onclick="calificar('@i','@Model.ElementAt(0).Id','@Model.ElementAt(2).Id')"></div>
+                                        }
+                                    }
+                                } 
+                                </div>                              
+                            }
+                         
+                        <div class ="left" id="PromStart">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  @Model.ElementAt(2).Estate De calificación promedio</div>                     
+                    </div>
+                </div>
+                @if (Model.ElementAt(1).Autorized != -1)
+                {
+                    <div id="commentsPost" class="comentariosMain">
+                    @if (Model.ElementAt(1).Autorized != -2)
+                    {
+                            @Html.TextArea("comment", @htmlAttributes: new { @class = "commentArea", cols = "70", rows = "5" });
+                            <br /><a href="javascript:void(0)" class="ebutton blue" id="btComentar" title="Comentar" onclick="Comentar('@Model.ElementAt(0).Id')">Comentar</a> 
+                    }
+                            <div>
+                            <h2>COMENTARIOS AGREGADOS A LA NOTICIA</h2>
+                                <div id="comments">
+                                    <div id="loading"><img src="../../Content/themes/base/images/loadingAzul.gif" /></div>
+                                </div> 
+                            </div>
+                           
+                    </div>
+                }
+                
+          </div>*@
+    </div>
+    </div>
+<div id="numPostCarrucel" style="display:none">1</div>

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<SIFIET.Models.Question>
+
+@{
+    ViewBag.Title = "Preguntas del Tema " + @ViewBag.Topic.Description;
+}
+
+
+<div class="grid">
+    <div class="c12">
+        <h2>Preguntas del Tema <strong><i>@ViewBag.Topic.Description</i></strong></h2>
+        <div class="alert success">
+            <p>
+            @TempData["Success"]
+            </p>
+        </div>
+
+
+        <p>
+            @Html.ActionLink("Crear Pregunta", "Create", new { id = ViewBag.Topic.Id }, htmlAttributes: new { @class = "ebutton blue" })
+        </p>
+    </div>
+    <div class="c12">
+        <div class="c9 first" id="content">              
+            <table>
+                <tr class="head">
+                    <th>
+                        Tipo de Pregunta
+                    </th>
+                    <th>
+                        Enunciado de la Pregunta
+                    </th>
+                    <th>
+                        Orden de la Pregunta
+                    </th>
+                    <th>
+                        Es Obligatorio
+                    </th>
+                    <th>
+                        Acciones
+                    </th>
+                </tr>
+                @{ int i = 0;}
+
+                @foreach (var item in Model) {
+                    if (i%2 == 0)
+                    {
+        
+                        @:<tr>
+                    }
+                    else
+                    {
+                        @:<tr class="even">
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @{
+                            if (item.Sentence.Length <= 30)
+                            {
+                                @item.Sentence
+                            }
+                            else
+                            {
+                                @item.Sentence.Substring(0,30) 
+                                
+                            }
+                            
+                            @Html.ActionLink("...", "Details", new { id = item.Id })
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuestionNumber)
+                    </td>
+                    <td>
+                        @{
+                            Write(item.IsObligatory == 0 ? "No" : "Si");
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { idT = item.IdTopic, idQ = item.Id }, htmlAttributes: new { @class = "btnedit" }) &nbsp
+                        @Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btndetails" }) &nbsp
+                        @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btndelete" }) &nbsp
+                        &nbsp
+                        @if (item.Type != "Larga" && item.Type != "Corta")
+                        {
+                            <div class="c1 first">
+                                                  
+                            </div>
+                            <div class="c1">
+                                <div class="boton">
+                                    &#9660;                                       
+                                    @*<img src="@Url.Content("~/Content/themes/base/images/more.png")"/>*@
+                                    <div class="informa">
+                                        <div class="contenido">
+                                            <div class="arrow_box"></div>
+                                            <div class="titulo">Más opciones</div>
+                                            <ul>
+                                                <li class="lmenu">@Html.ActionLink("Crear Opciones Respuesta", "Index", "AnswerChoices", new { id = item.Id }, null)</li>                                                          
+                                                @***************MAS OPCIONES**************************************** *@
+                                                @*<li><a href="#">Twitter</a></li>
+                                                                  <li><a href="#">Email</a></li>*@
+                                            </ul>	
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </td>
+                    @:</tr>
+                    i++;
+                }
+            </table>
+            </br>
+            @Html.ActionLink("Regresar a Temas", "Index", "Topic", new { id = ViewBag.Topic.Id }, htmlAttributes: new { @class = "ebutton blue" })
+        </div>
+        <div class="c3 last" id="layout">@Html.Partial("_LayoutSideBar")</div>
+    </div>
+    &nbsp;
+    
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/menu.js")" type="text/javascript"></script>

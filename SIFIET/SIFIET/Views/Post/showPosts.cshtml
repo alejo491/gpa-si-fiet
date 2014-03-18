@@ -1,0 +1,114 @@
+﻿@model IEnumerable<SIFIET.Models.Post>
+@{
+    Layout = "";  
+}
+<script type="text/javascript"> 
+$(document).ready(function () {
+        $.ajax({
+            type : "POST",
+            url :  "@(Url.Action("ShowListPosts", "Post"))", 
+            traditional : true,
+            data : {}, 
+            success : function(data){
+                $("#view-content").html(data); 
+            }
+        });  
+}) 
+</script>
+<div id="Noticias">
+    <div id="NoticiasBordeSup">
+		<div id="noticiasBordeSupIzq"></div>
+        <div id="noticiasBordeSupDer"></div>
+	</div>
+    <div id="MedioNoticias">
+        <div id="conNoticiasBordeIzq">
+			    <div id="conNoticiasBordeDer">
+                    <div id="ContenidoNoticias">
+                        <h2>Noticias</h2>
+                        <div id="carrucel-main" class="Carrucel">
+                             <div class="ContentCarrucel" id="Content">    
+                                @{
+                                    int i = 1;
+                                    string node;
+                                    string fondo;
+                                    string clase;}            
+                                    @foreach (var item in Model)
+                                    {
+                                        node = "Node" + i;
+                                        if(i == 1){
+                                            clase = "NodeCarrucel";
+                                        }
+                                        else{
+                                            clase = "NodeCarrucelUnselected";
+                                        }                                            
+                                        <div class=@clase id=@node >
+                                            <div class="inner">
+                                                @{fondo = "fondo" + item.Id;}
+                                                <div id=@fondo class="fondo_noticia">
+                                                    <script>
+                                                        var fondo2 = "#fondo" + "@item.Id";
+                                                        $.ajax({
+                                                            type : "POST",
+                                                            url :  "@(Url.Action("ImageMain","File", new { id = item.Id }))", // se dirige a la acción "Index" del controlado UploadFile
+                                                            traditional : true,
+                                                            data : {  }, // se agregan los parametros necesarios para la funcionalidad
+                                                            async:false,
+                                                            success : function(data){
+                                                                $(fondo2).html(data); // carga el código html en el div "VisorNoticias", este código es retornado por el controlador.
+                                                            }
+                                                        });  
+                                                    </script>
+                                                </div>                                                    
+                                                <div class="noticia">
+                                                    @Html.ActionLink(item.Title, "showPost", new { id = item.Id }, htmlAttributes: new { @class = "title" })<br />
+                                                    @if (item.Abstract.Count() >= 50)
+                                                    {
+                                                        @Html.ActionLink(item.Abstract.Substring(50) + "...", "showPost", new { id = item.Id }, htmlAttributes: new { @class = "title" }) 
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.ActionLink(item.Abstract, "showPost", new { id = item.Id }, htmlAttributes: new { @class = "title" }) 
+                                                    } 
+                                                </div>   
+                                            </div>                                               
+                                        </div>
+                                        i++;
+                                    } 
+                                   
+                            </div>
+                            <div class="Controls">
+                                @{
+                                    @Html.ActionLink("<<<", "", new { }, htmlAttributes: new { @class = "Back", @id = "BackCarrucel", @onclick = "Back()", @href = "javascript:void(0);" })
+                                    @Html.ActionLink(">>>", "", new { }, htmlAttributes: new { @class = "Next", @id = "NextCarrucel", @onclick = "Next()", @href = "javascript:void(0);" })
+                                    i = 1;
+                                    string a;}            
+                                    @foreach (var item in Model)
+                                    {
+                                        a = "A" + i;
+                                        if (i == 1)
+                                        {
+                                            @Html.ActionLink(i.ToString(), "", new { }, htmlAttributes: new { @class = "ASelected", @id = a, @onclick = "goToPosition('" + i + "')", @href = "javascript:void(0);" })                                          
+                                        }
+                                        else
+                                        { 
+                                            @Html.ActionLink(i.ToString(), "", new { }, htmlAttributes: new { @class = "Position", @id = a, @onclick = "goToPosition('" + i + "')", @href = "javascript:void(0);" })                                                                         
+                                        }
+                                        i++;
+                                    } 
+                            </div>
+                            <div class="view-content" id="view-content">
+                                                             
+                            </div>
+                            <a href="Post/GlobalIndex" class="ebutton blue" id="btMasNoticias" title="Ver más noticias">Más noticias</a>               
+                        </div>
+                    </div>
+        </div>
+        </div>
+    </div>
+    <div id="conNoticiasBordeInf">
+		<div id="noticiasBordeInfIzq"><!-- abajo izq --></div>
+        <div id="noticiasBordeInfDer"><!-- abajo der --></div>
+	</div>
+</div>
+
+<div id="numPostCarrucel" style="display:none">@ViewData.Model.Count()</div>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SIFIET.Models.ItemSurvey>
+
+@{
+    ViewBag.Title = "Listado de Items";
+}
+
+<h2>Listado de Items</h2>
+ <div></div>
+ <div>
+
+                                                                                       
+ </div>
+ <div class="alert success">
+            @TempData["Success"]
+        </div>
+
+<table>
+    <tr>
+        <th>
+            Reporte
+        </th>
+        <th>
+            Pregunta
+        </th>
+        <th>
+            Tipo de grafico
+        </th>
+        
+       <th>
+            Acciones
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Report.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GraphicType)
+        </td>
+      
+        <td>
+        <div class="c12">
+                                              <div class="c1 first">                                          
+                            
+                            
+            @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btndelete", @title = "Eliminar" })
+            </div>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/menu.js")" type="text/javascript"></script>

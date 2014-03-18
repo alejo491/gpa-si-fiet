@@ -1,0 +1,40 @@
+﻿@model SIFIET.Models.aspnet_Roles
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>aspnet_Roles</legend>
+
+    <div class="display-label">aspnet_Applications</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.aspnet_Applications.ApplicationName)
+    </div>
+
+    <div class="display-label">RoleId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoleId)
+    </div>
+
+    <div class="display-label">RoleName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoleName)
+    </div>
+
+    <div class="display-label">LoweredRoleName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LoweredRoleName)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

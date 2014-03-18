@@ -1,0 +1,638 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9F2EF35B-2E03-48F8-8D0F-B539666AFD7E}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SIFIET</RootNamespace>
+    <AssemblyName>SIFIET</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClientDependency.Core">
+      <HintPath>..\..\..\..\..\Google Drive\Web Sites\v4\SIFIET\bin\ClientDependency.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ClientDependency.Core.Mvc">
+      <HintPath>..\..\..\..\..\Google Drive\Web Sites\v4\SIFIET\bin\ClientDependency.Core.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentSecurity">
+      <HintPath>..\..\..\..\FluentSecurity.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\..\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcSiteMapProvider">
+      <HintPath>..\..\..\..\..\Google Drive\Web Sites\v4\SIFIET\bin\MvcSiteMapProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\..\..\..\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnswerChoicesController.cs" />
+    <Compile Include="Controllers\Aspnet_RolesController.cs" />
+    <Compile Include="Controllers\AssemblyHelper.cs" />
+    <Compile Include="Controllers\BossesController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\ElectiveController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ExperiencesBossesController.cs" />
+    <Compile Include="Controllers\ExperiencesController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\FillSurveyController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemDataController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\ItemSurveysController.cs" />
+    <Compile Include="Controllers\LikeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\QueryHelper.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\RoleMethodsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SchoolController.cs" />
+    <Compile Include="Controllers\SendSurveysController.cs" />
+    <Compile Include="Controllers\SendSurveysDbController.cs" />
+    <Compile Include="Controllers\SendSurveysEmailController.cs" />
+    <Compile Include="Controllers\StartboxController.cs" />
+    <Compile Include="Controllers\StudyController.cs" />
+    <Compile Include="Controllers\SurveysController.cs" />
+    <Compile Include="Controllers\SurveysTopicsController.cs" />
+    <Compile Include="Controllers\ThesisController.cs" />
+    <Compile Include="Controllers\TopicController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersRolesController.cs" />
+    <Compile Include="Controllers\VacanciesController.cs" />
+    <Compile Include="Controllers\VerifyController.cs" />
+    <Compile Include="Controllers\WizardController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\AnswerChoice.cs" />
+    <Compile Include="Models\aspnet_Applications.cs" />
+    <Compile Include="Models\aspnet_Membership.cs" />
+    <Compile Include="Models\aspnet_Paths.cs" />
+    <Compile Include="Models\aspnet_PersonalizationAllUsers.cs" />
+    <Compile Include="Models\aspnet_PersonalizationPerUser.cs" />
+    <Compile Include="Models\aspnet_Profile.cs" />
+    <Compile Include="Models\aspnet_Roles.cs" />
+    <Compile Include="Models\aspnet_SchemaVersions.cs" />
+    <Compile Include="Models\aspnet_Users.cs" />
+    <Compile Include="Models\aspnet_UsersInRoles.cs" />
+    <Compile Include="Models\aspnet_WebEvent_Events.cs" />
+    <Compile Include="Models\Boss.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\ConsultaGeneral.cs" />
+    <Compile Include="Models\DbSIEPISContext.cs" />
+    <Compile Include="Models\Elective.cs" />
+    <Compile Include="Models\Exemplar.cs" />
+    <Compile Include="Models\ExemplarsQuestion.cs" />
+    <Compile Include="Models\Experience.cs" />
+    <Compile Include="Models\ExperiencesBoss.cs" />
+    <Compile Include="Models\Field.cs" />
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FilesPost.cs" />
+    <Compile Include="Models\Filter.cs" />
+    <Compile Include="Models\FreeField.cs" />
+    <Compile Include="Models\FreeFieldsValue.cs" />
+    <Compile Include="Models\GroupOption.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemData.cs" />
+    <Compile Include="Models\ItemSurvey.cs" />
+    <Compile Include="Models\Like.cs" />
+    <Compile Include="Models\Mapping\AccountMap.cs" />
+    <Compile Include="Models\Mapping\AnswerChoiceMap.cs" />
+    <Compile Include="Models\Mapping\AnswerMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_ApplicationsMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_MembershipMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_PathsMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_PersonalizationAllUsersMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_PersonalizationPerUserMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_ProfileMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_RolesMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_SchemaVersionsMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_UsersInRolesMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_UsersMap.cs" />
+    <Compile Include="Models\Mapping\aspnet_WebEvent_EventsMap.cs" />
+    <Compile Include="Models\Mapping\BossMap.cs" />
+    <Compile Include="Models\Mapping\CommentMap.cs" />
+    <Compile Include="Models\Mapping\CompanyMap.cs" />
+    <Compile Include="Models\Mapping\ConsultaGeneralMap.cs" />
+    <Compile Include="Models\Mapping\ElectiveMap.cs" />
+    <Compile Include="Models\Mapping\ExemplarMap.cs" />
+    <Compile Include="Models\Mapping\ExemplarsQuestionMap.cs" />
+    <Compile Include="Models\Mapping\ExperienceMap.cs" />
+    <Compile Include="Models\Mapping\ExperiencesBossMap.cs" />
+    <Compile Include="Models\Mapping\FieldMap.cs" />
+    <Compile Include="Models\Mapping\FileMap.cs" />
+    <Compile Include="Models\Mapping\FilesPostMap.cs" />
+    <Compile Include="Models\Mapping\FilterMap.cs" />
+    <Compile Include="Models\Mapping\FreeFieldMap.cs" />
+    <Compile Include="Models\Mapping\FreeFieldsValueMap.cs" />
+    <Compile Include="Models\Mapping\GroupOptionMap.cs" />
+    <Compile Include="Models\Mapping\ItemDataMap.cs" />
+    <Compile Include="Models\Mapping\ItemMap.cs" />
+    <Compile Include="Models\Mapping\ItemSurveyMap.cs" />
+    <Compile Include="Models\Mapping\LikeMap.cs" />
+    <Compile Include="Models\Mapping\MethodMap.cs" />
+    <Compile Include="Models\Mapping\PostMap.cs" />
+    <Compile Include="Models\Mapping\QuestionMap.cs" />
+    <Compile Include="Models\Mapping\ReportMap.cs" />
+    <Compile Include="Models\Mapping\RoleMethodMap.cs" />
+    <Compile Include="Models\Mapping\SchoolMap.cs" />
+    <Compile Include="Models\Mapping\SecureControllerMap.cs" />
+    <Compile Include="Models\Mapping\StartboxMap.cs" />
+    <Compile Include="Models\Mapping\StepMap.cs" />
+    <Compile Include="Models\Mapping\StudyMap.cs" />
+    <Compile Include="Models\Mapping\SurveyedMap.cs" />
+    <Compile Include="Models\Mapping\SurveyMap.cs" />
+    <Compile Include="Models\Mapping\SurveysTopicMap.cs" />
+    <Compile Include="Models\Mapping\ThesisMap.cs" />
+    <Compile Include="Models\Mapping\TopicMap.cs" />
+    <Compile Include="Models\Mapping\UserMap.cs" />
+    <Compile Include="Models\Mapping\UsersStepMap.cs" />
+    <Compile Include="Models\Mapping\VacancyMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_ApplicationsMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_MembershipUsersMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_ProfilesMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_RolesMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_UsersInRolesMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_UsersMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_WebPartState_PathsMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_WebPartState_SharedMap.cs" />
+    <Compile Include="Models\Mapping\vw_aspnet_WebPartState_UserMap.cs" />
+    <Compile Include="Models\Method.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\RoleMethod.cs" />
+    <Compile Include="Models\School.cs" />
+    <Compile Include="Models\SecureController.cs" />
+    <Compile Include="Models\Startbox.cs" />
+    <Compile Include="Models\Step.cs" />
+    <Compile Include="Models\Study.cs" />
+    <Compile Include="Models\Survey.cs" />
+    <Compile Include="Models\Surveyed.cs" />
+    <Compile Include="Models\SurveysTopic.cs" />
+    <Compile Include="Models\Thesis.cs" />
+    <Compile Include="Models\Topic.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UsersStep.cs" />
+    <Compile Include="Models\Vacancy.cs" />
+    <Compile Include="Models\ViewModels\AnswerViewModel.cs" />
+    <Compile Include="Models\ViewModels\ItemReportViewModel.cs" />
+    <Compile Include="Models\ViewModels\RoleMethodsViewModel.cs" />
+    <Compile Include="Models\ViewModels\UsersInRolesViewModel.cs" />
+    <Compile Include="Models\vw_aspnet_Applications.cs" />
+    <Compile Include="Models\vw_aspnet_MembershipUsers.cs" />
+    <Compile Include="Models\vw_aspnet_Profiles.cs" />
+    <Compile Include="Models\vw_aspnet_Roles.cs" />
+    <Compile Include="Models\vw_aspnet_Users.cs" />
+    <Compile Include="Models\vw_aspnet_UsersInRoles.cs" />
+    <Compile Include="Models\vw_aspnet_WebPartState_Paths.cs" />
+    <Compile Include="Models\vw_aspnet_WebPartState_Shared.cs" />
+    <Compile Include="Models\vw_aspnet_WebPartState_User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Bootstrap\bootstrap-image-gallery.min.css" />
+    <Content Include="Content\Bootstrap\bootstrap-image-gallery.min.js" />
+    <Content Include="Content\Bootstrap\bootstrap-responsive.min.css" />
+    <Content Include="Content\Bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Bootstrap\bootstrap.min.js" />
+    <Content Include="Content\FileUpload\canvas-to-blob.min.js" />
+    <Content Include="Content\FileUpload\jquery.fileupload-ip.js" />
+    <Content Include="Content\FileUpload\jquery.fileupload-ui.css" />
+    <Content Include="Content\FileUpload\jquery.fileupload-ui.js" />
+    <Content Include="Content\FileUpload\jquery.fileupload.js" />
+    <Content Include="Content\FileUpload\jquery.iframe-transport.js" />
+    <Content Include="Content\FileUpload\load-image.min.js" />
+    <Content Include="Content\FileUpload\locale.js" />
+    <Content Include="Content\FileUpload\main.js" />
+    <Content Include="Content\FileUpload\tmpl.min.js" />
+    <Content Include="Content\img\archivo.jpg" />
+    <Content Include="Content\img\generalFile.png" />
+    <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\progressbar.gif" />
+    <Content Include="Content\img\register.png" />
+    <Content Include="Content\img\up.png" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\mainPrint.css" />
+    <Content Include="Content\Site2.css" />
+    <Content Include="Content\themes\base\images\badd.png" />
+    <Content Include="Content\themes\base\images\bdelete.png" />
+    <Content Include="Content\themes\base\images\citacion_prueba.jpg" />
+    <Content Include="Content\themes\base\images\close.png" />
+    <Content Include="Content\themes\base\images\con-noticias-borde-der.jpg" />
+    <Content Include="Content\themes\base\images\con-noticias-borde-inf.jpg" />
+    <Content Include="Content\themes\base\images\con-noticias-borde-izq.jpg" />
+    <Content Include="Content\themes\base\images\con-noticias-borde-sup.jpg" />
+    <Content Include="Content\themes\base\images\con-noticias-inf-der.jpg" />
+    <Content Include="Content\themes\base\images\con-noticias-inf-izq.jpg" />
+    <Content Include="Content\themes\base\images\con-noticias-sup-der.jpg" />
+    <Content Include="Content\themes\base\images\con-noticias-sup-izq.jpg" />
+    <Content Include="Content\themes\base\images\contenido.png" />
+    <Content Include="Content\themes\base\images\delete.png" />
+    <Content Include="Content\themes\base\images\der.gif" />
+    <Content Include="Content\themes\base\images\detail.png" />
+    <Content Include="Content\themes\base\images\edit.png" />
+    <Content Include="Content\themes\base\images\edit2.png" />
+    <Content Include="Content\themes\base\images\favicon.png" />
+    <Content Include="Content\themes\base\images\fon-body.png" />
+    <Content Include="Content\themes\base\images\fon-cabecera-barra-logo.png" />
+    <Content Include="Content\themes\base\images\fon-cabecera-rojo.png" />
+    <Content Include="Content\themes\base\images\fon-con-contenido.png" />
+    <Content Include="Content\themes\base\images\fon-con-noticias.jpg" />
+    <Content Include="Content\themes\base\images\ico-bloque-rojo.png" />
+    <Content Include="Content\themes\base\images\images.jpg" />
+    <Content Include="Content\themes\base\images\izq.gif" />
+    <Content Include="Content\themes\base\images\like.png" />
+    <Content Include="Content\themes\base\images\like1.png" />
+    <Content Include="Content\themes\base\images\loadingAzul.gif" />
+    <Content Include="Content\themes\base\images\login.png" />
+    <Content Include="Content\themes\base\images\menu-pri-esq-der.png" />
+    <Content Include="Content\themes\base\images\menu-pri-esq-izq.png" />
+    <Content Include="Content\themes\base\images\menu-pri-fondo.png" />
+    <Content Include="Content\themes\base\images\mg.jpg" />
+    <Content Include="Content\themes\base\images\more.png" />
+    <Content Include="Content\themes\base\images\nmg.jpg" />
+    <Content Include="Content\themes\base\images\register.png" />
+    <Content Include="Content\themes\base\images\search.png" />
+    <Content Include="Content\themes\base\images\sep-logo-unicauca.gif" />
+    <Content Include="Content\themes\base\images\starselected.png" />
+    <Content Include="Content\themes\base\images\starselected1.png" />
+    <Content Include="Content\themes\base\images\stars_0.png" />
+    <Content Include="Content\themes\base\images\stars_1.png" />
+    <Content Include="Content\themes\base\images\stars_2.png" />
+    <Content Include="Content\themes\base\images\stars_3.png" />
+    <Content Include="Content\themes\base\images\stars_4.png" />
+    <Content Include="Content\themes\base\images\stars_5.png" />
+    <Content Include="Content\themes\base\images\starunselected.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\canvasjs.js" />
+    <Content Include="Scripts\canvasjs.min.js" />
+    <Content Include="Scripts\carrucel.js" />
+    <Content Include="Scripts\IM.AutoComplete.js" />
+    <Content Include="Scripts\jquery-1.2.6.pack.js" />
+    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.5.1.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui.css" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.pajinate.js" />
+    <Content Include="Scripts\jquery.printElement.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\menu.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\postscript.js" />
+    <Content Include="Scripts\startbox.js" />
+    <Content Include="Template\SurveyEmailTemplate.htm" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AnswerChoices\Create.cshtml" />
+    <Content Include="Views\AnswerChoices\Delete.cshtml" />
+    <Content Include="Views\AnswerChoices\Details.cshtml" />
+    <Content Include="Views\AnswerChoices\Edit.cshtml" />
+    <Content Include="Views\AnswerChoices\Index.cshtml" />
+    <Content Include="Views\Aspnet_Roles\Create.cshtml" />
+    <Content Include="Views\Aspnet_Roles\Delete.cshtml" />
+    <Content Include="Views\Aspnet_Roles\Details.cshtml" />
+    <Content Include="Views\Aspnet_Roles\Edit.cshtml" />
+    <Content Include="Views\Aspnet_Roles\Index.cshtml" />
+    <Content Include="Views\Bosses\Create.cshtml" />
+    <Content Include="Views\Bosses\CreateForExperienceBosses.cshtml" />
+    <Content Include="Views\Bosses\Delete.cshtml" />
+    <Content Include="Views\Bosses\Details.cshtml" />
+    <Content Include="Views\Bosses\DetailsForExperiences.cshtml" />
+    <Content Include="Views\Bosses\Edit.cshtml" />
+    <Content Include="Views\Bosses\Index.cshtml" />
+    <Content Include="Views\Comment\Index.cshtml" />
+    <Content Include="Views\Companies\Create.cshtml" />
+    <Content Include="Views\Companies\CreateForExperience.cshtml" />
+    <Content Include="Views\Companies\Delete.cshtml" />
+    <Content Include="Views\Companies\Details.cshtml" />
+    <Content Include="Views\Companies\Edit.cshtml" />
+    <Content Include="Views\Companies\Index.cshtml" />
+    <Content Include="Views\Elective\Create.cshtml" />
+    <Content Include="Views\Elective\Delete.cshtml" />
+    <Content Include="Views\Elective\Details.cshtml" />
+    <Content Include="Views\Elective\Edit.cshtml" />
+    <Content Include="Views\Elective\Index.cshtml" />
+    <Content Include="Views\Error\ErrorDataUpdate.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\ExperiencesBosses\Create.cshtml" />
+    <Content Include="Views\ExperiencesBosses\Delete.cshtml" />
+    <Content Include="Views\ExperiencesBosses\Details.cshtml" />
+    <Content Include="Views\ExperiencesBosses\Edit.cshtml" />
+    <Content Include="Views\ExperiencesBosses\Index.cshtml" />
+    <Content Include="Views\Experiences\Create.cshtml" />
+    <Content Include="Views\Experiences\Delete.cshtml" />
+    <Content Include="Views\Experiences\Details.cshtml" />
+    <Content Include="Views\Experiences\Edit.cshtml" />
+    <Content Include="Views\Experiences\Index.cshtml" />
+    <Content Include="Views\File\CarrucelImage.cshtml" />
+    <Content Include="Views\File\Delete.cshtml" />
+    <Content Include="Views\File\Galery.cshtml" />
+    <Content Include="Views\File\GaleryPost.cshtml" />
+    <Content Include="Views\File\GaleryView.cshtml" />
+    <Content Include="Views\File\ImageMain.cshtml" />
+    <Content Include="Views\File\UFile.cshtml" />
+    <Content Include="Views\FillSurvey\Confirm.cshtml" />
+    <Content Include="Views\FillSurvey\Fill.cshtml" />
+    <Content Include="Views\ItemData\Create.cshtml" />
+    <Content Include="Views\ItemData\Delete.cshtml" />
+    <Content Include="Views\ItemData\Index.cshtml" />
+    <Content Include="Views\ItemSurveys\Create.cshtml" />
+    <Content Include="Views\ItemSurveys\Delete.cshtml" />
+    <Content Include="Views\ItemSurveys\Index.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\GeneralItems.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Like\Num_likes.cshtml" />
+    <Content Include="Views\Post\Create.cshtml" />
+    <Content Include="Views\Post\CreateAdmin.cshtml" />
+    <Content Include="Views\Post\Details.cshtml" />
+    <Content Include="Views\Post\DetailsAdmin.cshtml" />
+    <Content Include="Views\Post\Edit.cshtml" />
+    <Content Include="Views\Post\EditAdmin.cshtml" />
+    <Content Include="Views\Post\GlobalFilter.cshtml" />
+    <Content Include="Views\Post\GlobalIndex.cshtml" />
+    <Content Include="Views\Post\GlobalSearch.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Post\Search.cshtml" />
+    <Content Include="Views\Post\showListPosts.cshtml" />
+    <Content Include="Views\Post\showPost.cshtml" />
+    <Content Include="Views\Post\showPosts.cshtml" />
+    <Content Include="Views\Post\UserFilter.cshtml" />
+    <Content Include="Views\Post\UserIndex.cshtml" />
+    <Content Include="Views\Post\UserSearch.cshtml" />
+    <Content Include="Views\Questions\Create.cshtml" />
+    <Content Include="Views\Questions\Delete.cshtml" />
+    <Content Include="Views\Questions\Details.cshtml" />
+    <Content Include="Views\Questions\Edit.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
+    <Content Include="Views\Reports\Create.cshtml" />
+    <Content Include="Views\Reports\Delete.cshtml" />
+    <Content Include="Views\Reports\Details.cshtml" />
+    <Content Include="Views\Reports\Edit.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\Preview.cshtml" />
+    <Content Include="Views\Reports\RenderReport.cshtml" />
+    <Content Include="Views\RoleMethods\AssignRolesMethods.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\School\Create.cshtml" />
+    <Content Include="Views\School\Delete.cshtml" />
+    <Content Include="Views\School\Details.cshtml" />
+    <Content Include="Views\School\Edit.cshtml" />
+    <Content Include="Views\School\Index.cshtml" />
+    <Content Include="Views\SendSurveys\Preview.cshtml" />
+    <Content Include="Views\SendSurveys\Send.cshtml" />
+    <Content Include="Views\SendSurveys\SendSpecific.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
+    <Content Include="Views\Shared\_LayoutReports.cshtml" />
+    <Content Include="Views\Shared\_LayoutSeguridad.cshtml" />
+    <Content Include="Views\Shared\_LayoutSideBar.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Shared\_LayoutW.cshtml" />
+    <Content Include="Views\Shared\_Layout_galery.cshtml" />
+    <Content Include="Views\Startbox\Calificacion.cshtml" />
+    <Content Include="Views\Study\Create.cshtml" />
+    <Content Include="Views\Study\Delete.cshtml" />
+    <Content Include="Views\Study\Details.cshtml" />
+    <Content Include="Views\Study\Edit.cshtml" />
+    <Content Include="Views\Study\Index.cshtml" />
+    <Content Include="Views\SurveysTopics\Create.cshtml" />
+    <Content Include="Views\SurveysTopics\Delete.cshtml" />
+    <Content Include="Views\SurveysTopics\Edit.cshtml" />
+    <Content Include="Views\SurveysTopics\Index.cshtml" />
+    <Content Include="Views\Surveys\Create.cshtml" />
+    <Content Include="Views\Surveys\Delete.cshtml" />
+    <Content Include="Views\Surveys\Details.cshtml" />
+    <Content Include="Views\Surveys\Edit.cshtml" />
+    <Content Include="Views\Surveys\Index.cshtml" />
+    <Content Include="Views\Thesis\Create.cshtml" />
+    <Content Include="Views\Thesis\Delete.cshtml" />
+    <Content Include="Views\Thesis\Details.cshtml" />
+    <Content Include="Views\Thesis\Edit.cshtml" />
+    <Content Include="Views\Thesis\Index.cshtml" />
+    <Content Include="Views\Topic\Create.cshtml" />
+    <Content Include="Views\Topic\Delete.cshtml" />
+    <Content Include="Views\Topic\Details.cshtml" />
+    <Content Include="Views\Topic\Edit.cshtml" />
+    <Content Include="Views\Topic\Index.cshtml" />
+    <Content Include="Views\Topic\web.config" />
+    <Content Include="Views\UsersRoles\AssignUserRoles.cshtml" />
+    <Content Include="Views\User\Begin.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Edit2.cshtml" />
+    <Content Include="Views\User\Generate.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Search.cshtml" />
+    <Content Include="Views\User\State.cshtml" />
+    <Content Include="Views\Vacancies\Create.cshtml" />
+    <Content Include="Views\Vacancies\Delete.cshtml" />
+    <Content Include="Views\Vacancies\Details.cshtml" />
+    <Content Include="Views\Vacancies\Edit.cshtml" />
+    <Content Include="Views\Vacancies\Index.cshtml" />
+    <Content Include="Views\Vacancies\Index2.cshtml" />
+    <Content Include="Views\Vacancies\Search.cshtml" />
+    <Content Include="Views\Wizard\Index.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5920</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

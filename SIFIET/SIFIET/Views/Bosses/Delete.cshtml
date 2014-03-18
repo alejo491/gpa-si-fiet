@@ -1,0 +1,39 @@
+﻿@model SIFIET.Models.Boss
+
+@{
+    ViewBag.Title = "Borrar Jefe";
+    var wizard = ViewBag.WizardStep;
+    if (wizard == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutW.cshtml";
+    }
+}
+
+<h2>Borrar</h2>
+
+<h3>¿Está seguro de que quiere borrar este Jefe?</h3>
+<fieldset>
+    <legend>Jefe</legend>
+
+    <div class="display-label">Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>    
+
+    <div class="display-label">E-Mail</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">Teléfono</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </div>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Borrar" class="ebutton blue"/> &nbsp
+        @Html.ActionLink("Volver a la lista", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}

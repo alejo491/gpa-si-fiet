@@ -1,0 +1,61 @@
+﻿@model SIFIET.Models.Item
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="grid">
+	<div class="c12">
+    		<h2>Eliminar</h2>
+	</div>
+	<div class="c12">
+    	<div class="c9 first" id=”contenido”>
+        	
+        <h3>¿Está seguro de eliminar este item?</h3>
+        <fieldset>
+            <legend>Item</legend>
+
+             <div class="display-label">
+                <h3>Reporte</h3>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Report.Description)
+            </div>
+
+             <div class="display-label">
+                <h3>Nombre de la tabla</h3>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.TableName)
+            </div>
+
+             <div class="display-label">
+                <h3>Nombre del campo</h3>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.FieldName)
+            </div>
+
+             <div class="display-label">
+                <h3>Número de página</h3>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PageNumber)
+            </div>
+        </fieldset>
+        @using (Html.BeginForm()) {
+            <p>
+                <input type="submit" value="Eliminar" class="ebutton2 blue" /> &nbsp;
+                @Html.ActionLink("Regresar", "Index", routeValues: new { id = ViewBag.iddel }, htmlAttributes: new { @class = "ebutton blue" })
+            </p>
+        }
+
+    	</div>
+    	<div class="c3 last" id=”layout”>@Html.Partial("_LayoutReports")</div>
+	</div>
+	&nbsp;
+</div>
+
+
+

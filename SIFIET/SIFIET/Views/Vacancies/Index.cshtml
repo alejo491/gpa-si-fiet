@@ -1,0 +1,99 @@
+﻿@model PagedList.IPagedList<SIFIET.Models.Vacancy>
+
+@{
+    ViewBag.Title="Listado de Vacantes";
+}
+
+<h1>Listado de Vacantes</h1>
+
+
+<form method="get" action="/Vacancies/Search">
+    <fieldset>
+        <legend>Búsqueda de vacantes que contengan las palabras:</legend>
+        <div class="editor-field">
+          @Html.TextBox("criteria", ViewBag.CurrentFilter as string)&nbsp<input type="submit" value="Buscar" class="ebutton blue" />   
+        </div>
+            
+    </fieldset>
+</form>
+
+
+<br/>
+<p>
+     @Html.ActionLink("Crear Nueva", "Create", null, htmlAttributes: new { @class = "ebutton blue" })
+</p>
+
+<div class="alert success">@TempData["Create"]</div>
+<div class="alert success">@TempData["Update"]</div>
+<div class="alert success">@TempData["Delete"]</div>
+
+
+@foreach (var item in Model)
+{
+    <div class="vacancy">
+        <h2 class="title">@Html.DisplayFor(modelItem => item.Charge) en @Html.DisplayFor(modelItem => item.Company.Name) </h2>
+        <p class="meta"><small>Publicada por @Html.DisplayFor(modelItem => item.User.FirstNames)
+        @Html.DisplayFor(modelItem => item.User.LastNames) el   @Html.DisplayFor(modelItem => item.PublicationDate)</small><br />
+           
+        <div>         
+            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+            <p>Esta vacante cierra el @Html.DisplayFor(modelItem => item.ClosingDate)</p>  
+            <p><strong>Información de contacto de la compañía @Html.DisplayFor(modelItem => item.Company.Name)</strong><br/>
+                Dirección: @Html.DisplayFor(modelItem => item.Company.Address) - @Html.DisplayFor(modelItem => item.Company.City)<br/>
+                Teléfono: @Html.DisplayFor(modelItem => item.Company.Phone)<br/>
+                E-Mail: @Html.DisplayFor(modelItem => item.Company.Email)</p>
+
+            @Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btndetails", title = "Ver detalles" }) 
+             &nbsp
+
+            @try { 
+                if (item.IdUser.ToString().Equals(Session["userID"].ToString())  || Roles.GetRolesForUser().Contains("Administrador")){
+             
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btnedit",  title = "Editar" })
+                    //&nbsp
+                    Html.Display("&nbsp");
+                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btndelete", title="Eliminar vacante" })
+                             
+            }
+            }
+            catch (Exception e)
+            {
+            }
+            
+             
+        </div>
+    </div>
+ 
+}
+
+    <div>
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    de @Model.PageCount
+     
+    @if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<<", "Index", new { page = 1 })
+        @Html.Raw(" ");
+        @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1 })
+    }
+    else
+    {
+        @:<<
+        @Html.Raw("   ");
+        @:< Prev
+    }
+     
+    @if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Next>", "Index", new { page = Model.PageNumber + 1 })
+        @Html.Raw(" ");
+        @Html.ActionLink(">>", "Index", new { page = Model.PageCount })
+    }
+    else
+    {
+        @:Next >
+        @Html.Raw(" ")
+        @:>>
+    }
+    </div>
+

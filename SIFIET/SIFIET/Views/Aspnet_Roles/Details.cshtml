@@ -1,0 +1,53 @@
+﻿@model SIFIET.Models.aspnet_Roles
+
+@{
+    ViewBag.Title = "Detalles Rol";
+}
+
+
+<div class="grid">
+	<div class="c12">
+    		<h2>Detalles</h2>
+	</div>
+	<div class="c12">
+    	<div class="c9 first" id=”contenido”>
+
+
+
+<fieldset>
+    <legend>Rol</legend>
+
+    
+    <div class="display-field">
+        @Html.HiddenFor(model => model.aspnet_Applications.ApplicationName)
+    </div>
+
+   
+    <div class="display-field">
+        @Html.HiddenFor(model => model.RoleId)
+    </div>
+
+    <div class="display-label">Nombre del Rol</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoleName)
+    </div>
+
+
+
+    <div class="display-label">Descripciòn</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div class="display-label"></div>
+    <div class="display-label"></div>
+    <div class="display-label"></div>
+    <div class="display-label"></div>
+    @Html.ActionLink("Editar", "Edit", new { id =  Model.RoleId }, htmlAttributes: new { @class = "ebutton blue" }) &nbsp; @Html.ActionLink("Regresar al listado", "Index", routeValues: new { id = Model.RoleId }, htmlAttributes: new { @class = "ebutton blue" }) 
+</fieldset>
+
+</div>
+    	<div class="c3 last" id=”layout”>@Html.Partial("_LayoutSeguridad")</div>
+	</div>
+	&nbsp;
+</div>
+

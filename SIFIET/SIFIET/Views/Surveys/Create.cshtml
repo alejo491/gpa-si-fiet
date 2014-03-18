@@ -1,0 +1,60 @@
+﻿@model SIFIET.Models.Survey
+@{
+    ViewBag.Title = "Create";
+    //Layout = "~/Views/Shared/_LayoutIframe.cshtml";
+}
+
+<div class="grid">
+	<div class="c12">
+    		<h2>
+        Crear Encuesta</h2>
+	</div>
+	<div class="c12">
+    	<div class="c9 first" id=”contenido”>
+        	@using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <div class="c12 first">
+                    <p>
+                        
+                        <div class="display-label">
+                            <h3>Nombre</h3></div>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Name)
+                            <div class="alert error">
+                            @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+                    </p>
+                </div>
+                <div class="c12 first">
+                    
+                        <div class="display-label">
+                           <h3> Objetivo</h3></div>
+                        <div class="editor-field">
+                           <p> @Html.EditorFor(model => model.Aim)</p>
+                            <div class="alert error">
+                            @Html.ValidationMessageFor(model => model.Aim)
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="c12 first">
+                    <p>
+                        <input type="submit" value="Crear" class="ebutton2 blue" />
+                        &nbsp; @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+                    </p>
+                </div>
+            </fieldset>
+
+        }
+    	</div>
+    	<div class="c3 last" id=”layout”>@Html.Partial("_LayoutSideBar")</div>
+	</div>
+	&nbsp;
+</div>
+
+
+
+

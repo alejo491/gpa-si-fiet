@@ -1,0 +1,127 @@
+﻿@model SIFIET.Models.Vacancy
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h1>Editar datos de la vacante</h1>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Información registrada de la vacante</legend>
+
+        @Html.HiddenFor(model => model.Id)      
+        @Html.HiddenFor(model => model.PublicationDate)
+        @Html.HiddenFor(model => model.IdUser)
+
+
+        <div class="editor-label">
+            Cargo ofrecido
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Charge)
+            @Html.ValidationMessageFor(model => model.Charge)
+        </div>
+
+        <div class="editor-label">
+            Jornada de trabajo
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DayTrip)
+            @Html.ValidationMessageFor(model => model.DayTrip)
+        </div>
+
+        <div class="editor-label">
+            Número de horas de la jornada de trabajo
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HoursNumber)
+            @Html.ValidationMessageFor(model => model.HoursNumber)
+        </div>
+
+        <div class="editor-label">
+            Perfil Profesional requerido
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProfessionalProfile)
+            @Html.ValidationMessageFor(model => model.ProfessionalProfile)
+        </div>
+
+        <div class="editor-label">
+            Fecha de Cierre (dd/mm/yyyy)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ClosingDate, new { id = "closingdate" })
+            @Html.ValidationMessageFor(model => model.ClosingDate)
+        </div>
+
+       
+
+          <script type="text/javascript">
+              $(document).ready(function () {
+                  $("#closingdate").datepicker({ dateFormat: 'dd/mm/yy' });
+              });
+        </script>
+
+        <div class="editor-label">
+            Número de Vacantes ofrecidas
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.VacanciesNumber)
+            @Html.ValidationMessageFor(model => model.VacanciesNumber)
+        </div>
+
+        <div class="editor-label">
+            Salario ofrecido
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Salary)
+            @Html.ValidationMessageFor(model => model.Salary)
+        </div>
+
+
+        <script type="text/javascript">
+            $.validator.methods.number = function (value, element) {
+                value = floatValue(value);
+                return this.optional(element) || !isNaN(value);
+            }
+            $.validator.methods.range = function (value, element, param) {
+                value = floatValue(value);
+                return this.optional(element) || (value >= param[0] && value <= param[1]);
+            }
+
+            function floatValue(value) {
+                return parseFloat(value.replace(",", "."));
+            }  
+        </script>
+
+
+        <div class="editor-label">
+           Descripción
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description, htmlAttributes: new { rows="5%", cols="45%" })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdCompanie, "Compañía que ofrece el cargo (seleccione una de la lista)")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdCompanie", String.Empty)
+            @Html.ValidationMessageFor(model => model.IdCompanie)
+        </div>
+
+       
+    </fieldset>
+     <p>
+            <input type="submit" value="Actualizar"  class="ebutton blue" />
+             @Html.ActionLink("Volver a la lista", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+        </p>
+}
+

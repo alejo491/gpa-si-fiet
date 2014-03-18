@@ -1,0 +1,62 @@
+﻿@model ICollection<SIFIET.Models.Post> 
+
+@{
+    ViewBag.Title = "Detalles de la Noticia";
+}
+
+<h2>Detalles Noticia</h2>
+
+<script type="text/javascript"> 
+$(document).ready(function () {
+        $.ajax({
+            type : "POST",
+            url :  "@(Url.Action("GaleryView","File", new { id = Model.ElementAt(0).Id }))", // se dirige a la acción "Index" del controlado UploadFile
+            traditional : true,
+            data : {  }, // se agregan los parametros necesarios para la funcionalidad
+            success : function(data){
+                $("#clase2").html(data); // carga el código html en el div "VisorNoticias", este código es retornado por el controlador.
+            }
+        });  
+}) 
+</script>
+
+<fieldset>
+    <legend>Noticia</legend>
+   
+    <div class="display-field">
+        <span style="color: black;">Usuario : </span>
+        @Html.DisplayFor(model => model.ElementAt(0).User.FirstNames)
+        @Html.DisplayFor(model => model.ElementAt(0).User.LastNames)
+    </div>
+    <div class="display-field">
+        <span style="color: black;">Título :</span>
+        @Html.DisplayFor(model => model.ElementAt(0).Title)
+    </div>
+    <div class="display-field">
+        <span style="color: black;">Fecha de Publicación :</span> 
+        @Html.DisplayFor(model => model.ElementAt(0).PublicationDate)
+    </div>
+    <div class="display-field">
+        <span style="color: black;">Última Modificación :</span>
+        @Html.DisplayFor(model => model.ElementAt(0).UpdateDate)
+    </div>
+    <div class="display-field" align="justify">
+        <span style="color: black;">Resumen : </span>
+        @Html.DisplayFor(model => model.ElementAt(0).Abstract)
+    </div>
+    <div class="display-field" align="justify">
+        <span style="color: black;">Contenido :</span> 
+        <div id="texto-sin-formato" style="display:none">@Html.DisplayTextFor(model => model.ElementAt(0).Content);</div>
+        <div id="texto-con-formato"></div>        
+        <script>DarFormato();</script>
+    </div>
+    <br/>
+    <br/>
+    <div id="clase2">
+    
+    </div>
+</fieldset>
+<div>
+    @Html.ActionLink("Editar", "EditAdmin", new { id = Model.ElementAt(0).Id }, htmlAttributes: new { @class = "ebutton blue" }) 
+    @Html.ActionLink("Cancelar", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+</div>

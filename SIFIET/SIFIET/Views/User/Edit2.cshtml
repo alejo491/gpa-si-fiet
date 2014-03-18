@@ -1,0 +1,108 @@
+﻿@model SIFIET.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Información</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Usuario @ViewBag.UserName</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstNames)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstNames)
+            @Html.ValidationMessageFor(model => model.FirstNames)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastNames)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastNames)
+            @Html.ValidationMessageFor(model => model.LastNames)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CellphoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CellphoneNumber)
+            @Html.ValidationMessageFor(model => model.CellphoneNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BirthDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BirthDate)
+            @Html.ValidationMessageFor(model => model.BirthDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Gender)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Gender)
+            <div>
+                Masculino
+                @Html.RadioButtonFor(model => model.Gender, "M")
+            </div>
+            <div>
+                Femenino
+                @Html.RadioButtonFor(model => model.Gender, "F")
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MaritalStatus)
+        </div>
+        <div class="editor-field">
+            <div>
+            Soltero
+            @Html.RadioButtonFor(model => model.MaritalStatus, "Soltero")
+            </div>
+            <div>
+            Casado
+            @Html.RadioButtonFor(model => model.MaritalStatus, "Casado")
+            </div>
+            <div>
+            Union Libre
+            @Html.RadioButtonFor(model => model.MaritalStatus, "U Libre")
+            </div>
+        </div>
+
+        <p>
+            <input type="submit" value="Guardar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Regresar al Inicio", "Index")
+</div>

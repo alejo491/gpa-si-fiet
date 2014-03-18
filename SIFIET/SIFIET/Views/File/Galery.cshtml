@@ -1,0 +1,67 @@
+﻿@model IEnumerable<SIFIET.Models.File>
+
+@{
+    Layout = "~/Views/Shared/_Layout_galery.cshtml"; 
+}
+
+<h2>Archivos Pertenecientes a la Noticia</h2>
+
+<table>
+    <tr>
+        <th>
+            Imagen
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Tipo de Archivo
+        </th>
+        <th>
+            Tamaño 
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="text-align: center;">
+            @if (item.Type.ToString().Contains("image"))
+            {
+              <a href=@Html.DisplayFor(modelItem => item.Path)> <img alt="" src= @Html.DisplayFor(modelItem => item.Path) height="120" width="120" /></a> 
+                
+            }
+             @if (item.Type.ToString().Contains("application"))
+             {   
+               <a> <img alt="" src= "/Content/img/archivo.jpg" height="120" width="120" /></a>
+                 <br />  
+               <a href=@Html.DisplayFor(modelItem => item.Path)>Descargar Archivo</a> 
+             }
+        </td>
+        <td style="text-align: center;">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="text-align: center;">
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td style="text-align: center;">
+            @Html.DisplayFor(modelItem => item.Size)
+        </td>
+        <td>
+             @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btndelete", @title = "Eliminar" })
+        </td>
+    </tr>
+}
+
+</table>
+ <script type="text/javascript">
+        $(function ImageLB() {
+            $('#gallery a').lightBox({ 
+                imageLoading: '/Content/lightbox-ico-loading.gif',
+                imageBtnClose: '/Content/lightbox-btn-close.gif',
+                imageBtnPrev: '/Content/lightbox-btn-prev.gif',
+                imageBtnNext: '/Content/lightbox-btn-next.gif',
+                
+            });
+        });
+    </script>

@@ -1,0 +1,121 @@
+﻿@using SIFIET.Models;
+@model PagedList.IPagedList<SIFIET.Models.User>
+@{
+    
+    ViewBag.Title = "Búsqueda de Usuarios";
+}
+<h1>Resultados de la Búsqueda para "@ViewBag.CurrentFilter" </h1> 
+
+<form method="get">
+    <fieldset>  
+        <div class="editor-field"> 
+            Usar otras palabras clave: @Html.TextBox("nameuser", ViewBag.CurrentFilter as string)
+            &nbsp<input type="submit" value="Buscar" class="ebutton blue" />   
+        </div>         
+    </fieldset>
+</form>
+
+<table>
+ 
+    <tr><th>Nombres</th><th>Apellidos</th><th>Dirección</th><th>Celular</th><th >Opciones</th></tr>
+    
+    @{ int i = 0;}  
+    @if (Model.Count() != 0)
+    {       
+    if (ViewBag.Busqueda != null)
+    {
+        foreach (var v in Model)
+        { 
+            if (i % 2 == 0)
+            {
+                @:<tr>
+            }
+            else
+            {
+                    @:<tr class="even">
+            } 
+            @:<tr class = "head"> 
+                <td>    @Html.DisplayFor(modelItem => v.FirstNames)      </td>
+                <td>    @Html.DisplayFor(modelItem => v.LastNames)       </td>
+                <td>    @Html.DisplayFor(modelItem => v.Address)         </td>
+                <td>    @Html.DisplayFor(modelItem => v.CellphoneNumber) </td>
+                <td><div><div class="left"> @Html.ActionLink(" ", "Edit", new { id = v.Id }, htmlAttributes: new { @class = "btnedit", title = "Editar Perfil" }) &nbsp</div>
+                         <div class="left"> @Html.ActionLink(" ", "Details", new { id = v.Id }, htmlAttributes: new { @class = "btndetails", title = "Ver Perfíl" }) &nbsp</div>
+                    </div>&nbsp
+                    <div class="c1">
+                    <div class="boton">
+                     &#9660;                               
+                    <div class="informa">
+                         <div class="contenido">
+                               <div class="arrow_box"></div>
+                                <div class="titulo">Más opciones</div>
+                                <ul>
+                                   <li class="lmenu">
+                                      @Html.ActionLink("Asignar Roles", "AssignUserRoles", "UsersRoles", new { id = v.Id }, null)
+                                   </li>
+                                </ul>
+                                <ul>
+                                   <li class="lmenu">
+                                      @Html.ActionLink("Perfil del Usuario", "Begin", new { id = v.Id }, null)
+                                   </li>
+                                </ul>	
+                                <ul>
+                                   <li class="lmenu">
+                                      @Html.ActionLink("Cambiar Estado", "State", new { id = v.Id }, null)                 
+                                   </li>
+                                </ul>
+                          </div>
+                     </div>
+                 </div>
+                 </div> 
+                </td>
+               @:</tr>    
+            
+        }
+    }
+        i++;
+    }
+</table>
+<div></div>
+ <div>
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    de @Model.PageCount  
+    @if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<<", "Search", new { nameuser = ViewBag.CurrentFilter, page = 1 })
+        @Html.Raw(" ");
+        @Html.ActionLink("< Anterior", "Search", new { nameuser = ViewBag.CurrentFilter, page = Model.PageNumber - 1 })
+    }
+    else
+    {
+        @:<<
+        @Html.Raw("   ");
+        @:< Anterior
+    }  
+    @if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Siguiente>", "Search", new { nameuser = ViewBag.CurrentFilter, page = Model.PageNumber + 1 })
+        @Html.Raw(" ");
+        @Html.ActionLink(">>", "Search", new { nameuser = ViewBag.CurrentFilter, page = Model.PageCount })
+    }
+    else
+    {
+        @:Siguiente >
+        @Html.Raw(" ")
+        @:>>
+    }
+    </div>
+    @if (Model.Count() == 0)
+    { 
+   <h2>El usuario -@ViewBag.CurrentFilter- no existe</h2> 
+    }
+<br/>
+
+    <p>    
+        @Html.ActionLink("Regresar al Listado", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" 
+
+type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/menu.js")" type="text/javascript"></script>

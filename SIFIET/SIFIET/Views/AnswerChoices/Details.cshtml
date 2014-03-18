@@ -1,0 +1,67 @@
+﻿@model SIFIET.Models.AnswerChoice
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<div class="grid">
+
+    <div class="c12">
+
+          <h2>Detalles de la Opción de Respuesta</h2>
+
+    </div>
+
+    <div class="c12">
+
+       <div class="c9 first" id=”content”>
+
+           
+<fieldset>
+    <legend>Opción de Respuesta</legend>
+    <br/>
+
+    <div class="display-label">Pregunta</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Question.Sentence)
+    </div>
+    <br/>
+
+    <div class="display-label">Enunciado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sentence)
+    </div>
+    <br/>
+
+    <div class="display-label">Valor Cuantitativo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumericValue)
+    </div>
+    <br/>
+
+    <div class="display-label">Tipo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+    <br/>
+
+    <div class="display-label">Número de Orden</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnswerNumber)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { idT = Model.Id}, htmlAttributes: new { @class = "ebutton blue" }) &nbsp; @Html.ActionLink("Regresar al listado", "Index", routeValues: new { id = Model.IdQuestion }, htmlAttributes: new { @class = "ebutton blue" })
+</p>
+
+       </div>
+
+       <div class="c3 last" id=”layout”>@Html.Partial("_LayoutSideBar")</div>
+
+    </div>
+
+    &nbsp;
+</div>
+
+
+

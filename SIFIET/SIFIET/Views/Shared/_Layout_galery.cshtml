@@ -1,0 +1,34 @@
+﻿@using ClientDependency.Core
+@using ClientDependency.Core.Mvc
+<!DOCTYPE html>
+<html>
+	
+<head>
+    @MvcHtmlString.Create(Html.RenderCssHere(new List<IClientDependencyPath>
+												{
+													new BasicPath("Base", "~/Content/themes/base"),
+													new BasicPath("Content", "~/Content")
+												}))
+
+	@MvcHtmlString.Create(Html.RenderJsHere(new List<IClientDependencyPath>
+											   {
+												   new BasicPath("Scripts", "~/Scripts"),
+												   new BasicPath("googleCDN", "http://ajax.googleapis.com/ajax/libs/"),
+												   new BasicPath("Content", "~/Content")
+												   
+											   }))
+
+	@{
+		Html.RequiresCss("Site.css", "Content", 1);
+	}
+	<title>@ViewBag.Title</title>
+</head>
+<body>
+	<div class="page">
+		<div id="main2">
+			@RenderBody()
+		</div>
+	</div>
+</body>
+</html>
+

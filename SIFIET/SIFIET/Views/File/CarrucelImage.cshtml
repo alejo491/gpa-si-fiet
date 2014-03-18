@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SIFIET.Models.File>
+
+@{
+    Layout = ""; 
+}
+
+@if (Model.Count() > 0)
+{
+    <div id="carrucel-main" class="Carrucel" style = "width:50.67%">
+        <div class="ContentCarrucel" id="Content">
+          @{
+                int i = 1;
+                string node;
+                string fondo;
+                string clase;} 
+                @foreach (var item in Model)
+                {
+                    node = "Node" + i;
+                    if(i == 1){
+                        clase = "NodeCarrucel";
+                    }
+                    else{
+                        clase = "NodeCarrucelUnselected";
+                    }
+                    <div class=@clase id=@node >
+                        <div class="inner">
+                             @{fondo = "fondo" + item.Id;}
+                             <div id=@fondo class="fondo_noticia">
+                                <div  class="imagecarrucelshowpost"><img  alt="" src=@Html.DisplayFor(modelItem => item.Path)/></div>
+                             </div>
+                         </div>
+                    </div>
+                    i++;
+                }    
+        </div>
+        <div class="Controls">
+            @{
+                @Html.ActionLink("<<<", "", new { }, htmlAttributes: new { @class = "Back", @id = "BackCarrucel", @onclick = "Back()", @href = "javascript:void(0);" })
+                @Html.ActionLink(">>>", "", new { }, htmlAttributes: new { @class = "Next", @id = "NextCarrucel", @onclick = "Next()", @href = "javascript:void(0);" })
+                i = 1;
+                string a;}            
+                @foreach (var item in Model)
+                {
+                    a = "A" + i;
+                    if (i == 1)
+                    {
+                        @Html.ActionLink(i.ToString(), "", new { }, htmlAttributes: new { @class = "ASelected", @id = a, @onclick = "goToPosition('" + i + "')", @href = "javascript:void(0);" })                                          
+                    }
+                    else
+                    { 
+                        @Html.ActionLink(i.ToString(), "", new { }, htmlAttributes: new { @class = "Position", @id = a, @onclick = "goToPosition('" + i + "')", @href = "javascript:void(0);" })                                                                         
+                    }
+
+                    i++;
+                } 
+        </div>
+    </div>
+    <div id="numPostCarrucel" style="display:none">@ViewData.Model.Count()</div>
+}

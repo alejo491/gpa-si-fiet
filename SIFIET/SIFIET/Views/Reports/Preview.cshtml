@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Preview";
+    string VIframe = @Url.Action("RenderReport","Reports", new { id = ViewBag.IdReport});//,/" + ViewBag.IdReport);
+}
+
+<script type="text/javascript" language="JavaScript">
+<!--
+    function autoResize(id) {
+        var newheight;
+        if (document.getElementById(id)) {
+            newheight = document.getElementById(id).contentWindow.document.body.scrollHeight;
+        }
+        document.getElementById(id).height = newheight + "px";
+    }
+
+//-->
+</script>
+
+<h2>Vista previa Reporte</h2>
+
+<iframe id="ReportContainer"src="@VIframe" width=100% height=100% onload="autoResize('ReportContainer')">Texto para cuando el navegador no conoce la etiqueta iframe</iframe>
+
+<br/>
+<br/>
+@Html.ActionLink("Regresar","Index","Reports",null,new {@class="ebutton blue"})

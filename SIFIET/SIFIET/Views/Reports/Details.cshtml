@@ -1,0 +1,51 @@
+﻿@model SIFIET.Models.Report
+
+@{
+    ViewBag.Title = "Detalles Reporte";
+}
+
+<div class="grid">
+	<div class="c12">
+    		<h2>Detalles</h2>
+	</div>
+	<div class="c12">
+    	<div class="c9 first" id=”contenido”>
+        	
+        <fieldset>
+            <legend>Reporte</legend>
+
+             <div class="display-label">
+                <h3>Usuario</h3>
+            </div>
+            <div class="display-field">
+                  @ViewBag.nombre
+            </div>
+
+             <div class="display-label">
+                <h3>Descripción</h3>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+
+             <div class="display-label">
+                <h3>Fecha Reporte</h3>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.ReportDate)
+            </div>
+        </fieldset>
+        <p>
+            @Html.ActionLink("Regresar", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+        </p>
+
+    	</div>
+    	<div class="c3 last" id=”layout”>@Html.Partial("_LayoutReports")</div>
+	</div>
+	&nbsp;
+</div>
+
+
+
+
+

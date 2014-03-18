@@ -1,0 +1,57 @@
+﻿@model SIFIET.Models.Experience
+
+@{
+    ViewBag.Title = "Detalles";
+    var wizard = ViewBag.WizardStep;
+    if (wizard == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutW.cshtml";
+        wizard = 1;
+    }
+}
+
+<h2>Detalles</h2>
+
+<fieldset>
+    <legend>Experiencia Laboral</legend>
+    <input type="hidden" name="wizard" id="wizard" value="@ViewBag.WizardStep"/>
+        
+    <div class="display-label">Usuario</div>
+    <div class="display-field">
+        @Html.Display("NameUser")
+    </div>
+
+    <div class="display-label">Nombre de la Compañía</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Company.Name)
+    </div>
+    <div class="display-label">Nombre del jefe directo</div>
+    <div class="display-field">
+        @Html.Display("NameBoss")
+        &nbsp
+        @Html.ActionLink("Ver Contacto", "DetailsForExperiences", "Bosses", new { id= Session["IdBoss"], wizardStep = wizard}, new { @class = "ebutton2 blue linkmenu" })<br />
+    </div>
+    <div class="display-label">Descripción del trabajo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div class="display-label">Cargo Desempeñado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Charge)
+    </div>
+    
+    <div class="display-label">Fecha Inicio Trabajo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+    <div class="display-label">Fecha fin Trabajo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+    <br/>
+    <p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id, wizardStep = wizard }, htmlAttributes: new { @class = "ebutton blue" })&nbsp
+    @Html.ActionLink("Volver", "Index", new { wizardStep = wizard }, htmlAttributes: new { @class = "ebutton blue" }) 
+</p>
+</fieldset>
+

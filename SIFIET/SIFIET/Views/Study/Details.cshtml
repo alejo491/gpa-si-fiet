@@ -1,0 +1,82 @@
+﻿@model SIFIET.Models.Study
+@using System.Collections.Specialized
+
+@{
+    ViewBag.Title = "Detalles";
+    var wizard = ViewBag.WizardStep;
+
+    if (wizard == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutW.cshtml";
+        wizard = 1;
+        ViewBag.thewizard = 1;
+    }
+}
+
+<h2>Detalles</h2>
+
+<fieldset>
+    <legend>Estudio</legend>
+
+    <div class="display-label">Institución</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.School.Name)
+    </div>
+
+    <div class="display-label">Programa</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Programs)
+    </div>
+
+    <div class="display-label">Usuario</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User.FirstNames)&nbsp;
+        @Html.DisplayFor(model => model.User.LastNames)
+    </div>
+
+    <div class="display-label">Título</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Grade)
+    </div>
+
+    @if(Model.Electives.Count != 0)
+    {
+        <div class="display-label">Electivas</div>
+        foreach(var i in Model.Electives)
+        {
+             <div class="display-field">&nbsp;
+             
+                @Html.DisplayFor(model => i.Name)
+             </div>
+        }
+    }
+    @if (Model.Thesis != null)
+    {
+        <div class="display-label">Tesis</div>
+        <div class="display-field">&nbsp;
+            @Html.DisplayFor(model => model.Thesis.Title)
+        </div>
+        
+        if (Model.Thesis.Description != null)
+        {
+            <div class="display-label">Decsripcion</div>
+            <div class="display-field">&nbsp;
+                @Html.DisplayFor(model => model.Thesis.Description)
+            </div>
+        }
+    }
+
+    <div class="display-label">Fecha Inicio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">Fecha fin</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id, idUser = ViewBag.UserId, wizardStep = ViewBag.thewizard }, htmlAttributes: new { @class = "ebutton blue" }) 
+    @Html.ActionLink("Regresar", "Index", new { id = ViewBag.UserId, wizardStep = ViewBag.thewizard }, htmlAttributes: new { @class = "ebutton blue" })
+</p>

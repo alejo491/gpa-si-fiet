@@ -1,0 +1,125 @@
+﻿@model IEnumerable<SIFIET.Models.aspnet_Roles>
+
+@{
+    ViewBag.Title = "Listado de Roles";
+}
+
+<div class="grid">
+
+    <div class="c12">
+
+           
+        <h2>Listar Roles</h2>
+
+        <div class="alert success">
+            @TempData["Success"]
+        </div>
+
+        <p>
+            @Html.ActionLink("Crear Nuevo Rol", "Create","", htmlAttributes: new { @class = 
+
+"ebutton blue" })
+        </p>
+
+    </div>
+
+    <div class="c12">
+
+       <div class="c9 first" id=”contenido”>
+
+           
+<table>
+    <tr>
+       
+        <th>
+            Nombre del Rol
+        </th>
+       
+        <th>
+            Descripciòn
+        </th>
+        <th>
+            Acciones
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleName)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+        <div class="c12">
+            <div class="c1 first">
+            @Html.ActionLink(" ", "Edit", new { id = item.RoleId },  htmlAttributes: new { 
+
+@class = "btnedit", @title = "Editar" }) 
+            </div>
+            <div class="c1">
+            @Html.ActionLink(" ", "Details", new { id = item.RoleId }, htmlAttributes: new { @class = "btndetails", @title = "Detalles" }) 
+            </div>
+            <div class="c1">
+            
+            @Html.ActionLink(" ", "Delete", new { id = item.RoleId }, htmlAttributes: new { @class = "btndelete", @title = "Eliminar" })
+            </div>
+            <div class="c1 first">
+             </div>
+                  <div class="c1">
+                   <div class="boton">
+                      &#9660;                               
+
+        
+                     @*<img src="@Url.Content("~/Content/themes/base/images/more.png")"/>*@
+                     <div class="informa">
+                       <div class="contenido">
+                           <div class="arrow_box"></div>
+                             <div class="titulo">Más opciones</div>
+                              <ul>                        
+
+                                     
+                                                                  <li 
+
+class="lmenu">@Html.ActionLink("Asignar Permisos", "AssignRolesMethods", "RoleMethods", new 
+
+{ id = item.RoleId }, null)</li>
+                                                                  @***************MAS 
+
+OPCIONES**************************************** *@
+                                                                  @*<li><a 
+
+href="#">Twitter</a></li>
+                                                                  <li><a 
+
+href="#">Email</a></li>*@
+                                                              </ul>	
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+        </td>
+    </tr>
+}
+
+</table>
+
+       </div>
+
+       <div class="c3 last" id=”layout”>@Html.Partial("_LayoutSeguridad")</div>
+
+    </div>
+
+    &nbsp;
+</div>
+
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" 
+
+type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/menu.js")" type="text/javascript"></script>

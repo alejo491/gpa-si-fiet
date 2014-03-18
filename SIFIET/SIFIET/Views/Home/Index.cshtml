@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Egresados Unicauca";
+}
+@*<script type="text/javascript"> 
+    $(document).ready(function () {
+        $.ajax({
+            type : "POST",
+            url :  "@Url.Action("ShowPosts","Post")", // se dirige a la acción "ShowPosts" del controlado Post
+            traditional : true,
+            data : {}, // se agregan los parametros necesarios para la funcionalidad
+            success : function(data){
+                $("#VisorNoticias").html(data); // carga el código html en el div "VisorNoticias", este código es retornado por el controlador.
+            }
+        });  
+    }) 
+    $(document).ready(function () {
+        $.ajax({
+            type : "POST",
+            url :  "@Url.Action("index2","Vacancies")", // se dirige a la acción "ShowPosts" del controlado Post
+            traditional : true,
+            data : {}, // se agregan los parametros necesarios para la funcionalidad
+            success : function(data){
+                $("#contenido-der").html(data); // carga el código html en el div "VisorNoticias", este código es retornado por el controlador.
+            }
+        });  
+    }) 
+</script>*@
+
+<div class="grid">
+    <div class="c12">
+        <div class="alert error">
+            @TempData["Error"]
+        </div>
+        <div class="alert success">
+            @TempData["Success"]
+        </div>
+    </div>
+    <div class="c12">
+        <div class="c11 first">
+            <div id="VisorNoticias">
+            
+            </div>
+            <div id="Principal">
+                <h2>Bienvenido</h2>
+                <p>Muchas gracias por colaborar en el proceso de autoevaluación con fines de acreditación de alta calidad del programa de ingeniería de sistemas. 
+                </p>
+                <p> 
+                                         
+                       El programa de ingeniería de sistemas obtuvo una acreditación de alta calidad por 6 años <a href="https://docs.google.com/file/d/0B-x_Z_t4olkFcWRtODY3Z2xZMmc/edit">(Ver resolución).</a> 
+                </p>
+                    
+                
+                <div align="center">
+                <h2>  <a href="@Url.Action("Register","Account")">Por favor regístrese aquí.</a></h2>
+                        <a href="@Url.Action("Register","Account")"><img src="@Url.Content("~/Content/img/register.png")" alt="Registrese aqui"/></a>
+                </div>
+                </div>
+        </div>
+        @*</div>
+        <div class="c3"></div>
+        <div class="c3 last">
+             <div id="contenido-der">   
+            </div>
+        </div>*@
+    </div>
+    &nbsp;
+</div>
+
+

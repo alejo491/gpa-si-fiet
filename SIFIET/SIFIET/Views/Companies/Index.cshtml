@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SIFIET.Models.Company>
+
+@{
+    ViewBag.Title = "Listado de Compañías";
+}
+
+<h1>Listado de Compañías</h1>
+
+<p>
+    @Html.ActionLink("Crear nueva compañía", "Create", null, htmlAttributes: new { @class = "ebutton blue" })
+</p>
+<div class="alert success">@TempData["Create"]</div>
+<div class="alert success">@TempData["Update"]</div>
+<div class="alert success">@TempData["Delete"]</div>
+<table>
+    <tr class="head">
+        <th>
+            Nombre
+        </th>
+        <th>
+            Teléfono
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th>
+            E-Mail
+        </th>
+        <th>
+            Ciudad
+        </th>
+        <th>
+            Sector
+        </th>
+        <th>Acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr class="alt">
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sector)
+        </td>
+        <td>
+            <div class = " left ">@Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btnedit", @title = "Editar" }) &nbsp</div> 
+            <div class = " left ">@Html.ActionLink("Editar", "Edit", new { id = item.Id }) |&nbsp</div> 
+            <div class = " left ">@Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btndetails", @title = "Detalles" }) &nbsp</div>
+            <div class = " left ">@Html.ActionLink("Detalles", "Details", new { id = item.Id }) |&nbsp</div> 
+            <div class = " left ">@Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btndelete", @title = "Eliminar" }) &nbsp</div>
+            <div class = " left ">@Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) &nbsp</div>
+        </td>
+    </tr>
+}
+
+</table>

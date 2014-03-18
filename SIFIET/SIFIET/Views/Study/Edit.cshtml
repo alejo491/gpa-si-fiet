@@ -1,0 +1,476 @@
+﻿@model SIFIET.Models.Study
+
+@{
+    ViewBag.Title = "Editar";
+    var electivas1 = ViewBag.contadorElectivas;
+    var electivas2 = electivas1 - 1;
+    var electivas3 = electivas2 - 1;
+    var electivas4 = electivas3 - 1;
+    var electivas5 = electivas4 - 1;
+    var valor = ViewBag.Seleccionado3;
+    var wizard = ViewBag.WizardStep;
+    
+    if (wizard == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutW.cshtml";
+        wizard = 1;
+        ViewBag.thewizard = 1;
+    }  
+}
+
+@*validar las fechas*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#EndDate").change(function () {
+            var errorDate = false;
+            var startDt = $("#StartDate").val();
+            var endDt = $("#EndDate").val();
+            var aI = startDt.substring(6, 10);
+            var aF = endDt.substring(6, 10);
+            if (aI == aF) {
+                var mI = startDt.substring(3, 5);
+                var mF = endDt.substring(3, 5);
+                if (mI <= mF) {
+                    var dI = startDt.substring(0, 2);
+                    var dF = endDt.substring(0, 2);
+                    if (dI >= dF) {
+                        errorDate = true;
+                    }
+                } else {
+                    errorDate = true;
+                }
+            } else {
+                if (aI > aF) {
+                    errorDate = true;
+                }
+            }
+            if (errorDate) {
+                $('<p>').text('¡La Fecha Inicio no puede ser mayor a la fecha final!').appendTo('#errorendDate').hide(20000, function () { $(this).remove(); });
+                $("#EndDate").val("");
+            }
+        });
+
+        $("#StartDate").change(function () {
+            var errorDate = false;
+            var startDt = $("#StartDate").val();
+            var endDt = $("#EndDate").val();
+            if (endDt != "") {
+                var aI = startDt.substring(6, 10);
+                var aF = endDt.substring(6, 10);
+                if (aI == aF) {
+                    var mI = startDt.substring(3, 5);
+                    var mF = endDt.substring(3, 5);
+                    if (mI <= mF) {
+                        var dI = startDt.substring(0, 2);
+                        var dF = endDt.substring(0, 2);
+                        if (dI >= dF) {
+                            errorDate = true;
+                        }
+                    } else {
+                        errorDate = true;
+                    }
+                } else {
+                    if (aI > aF) {
+                        errorDate = true;
+                    }
+                }
+                if (errorDate) {
+                    $('<p>').text('¡La Fecha Inicio no puede ser mayor a la fecha final!').appendTo('#errorStartDate').hide(20000, function () { $(this).remove(); });
+                    $("#StartDate").val("");
+                }
+            }
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#StartDate").change(function () {
+            var now = new Date();
+            var errorDate = false;
+            var startDt = $("#StartDate").val();
+            var endDt = now.getDate() + "-" + now.getMonth() + "-" + now.getFullYear();
+            var aI = startDt.substring(0, 4);
+            var aF = endDt.substring(5, 10);
+            if (aI == aF) {
+                var mI = startDt.substring(5, 7);
+                var mF = endDt.substring(3, 4);
+                if (mI <= mF) {
+                    var dI = startDt.substring(8, 10);
+                    var dF = endDt.substring(0, 2);
+                    if (dI > dF) {
+                        errorDate = true;
+                    }
+                } else {
+                    errorDate = true;
+                }
+            } else {
+                if (aI > aF) {
+                    errorDate = true;
+                }
+            }
+            if (errorDate) {
+                $('<p>').text('la fecha de inicio no puede ser mayor a la fecha actual').appendTo('#errorStartDate').hide(20000, function () { $(this).remove(); });
+                $("#StartDate").val("");
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#EndDate").change(function () {
+            var now = new Date();
+            var errorDate = false;
+            var startDt = $("#EndDate").val();
+            var endDt = now.getDate() + "-" + now.getMonth() + "-" + now.getFullYear();
+            var aI = startDt.substring(0, 4);
+            var aF = endDt.substring(5, 10);
+            if (aI <= aF) {
+                var mI = startDt.substring(5, 7);
+                var mF = endDt.substring(3, 4);
+                if (mI <= mF) {
+                    var dI = startDt.substring(8, 10);
+                    var dF = endDt.substring(0, 2);
+                    if (dI > dF) { errorDate = true; }
+                } else { errorDate = true; }
+            } else { errorDate = true; }
+            if (errorDate) {
+                $('<p>').text('la fecha de fin no puede ser mayor a la fecha actual').appendTo('#errorendDate').hide(20000, function () { $(this).remove(); });
+                $("#EndDate").val("");
+            }
+        });
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#StartDate").datepicker({ dateFormat: 'dd/mm/yy' });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#EndDate").datepicker({ dateFormat: 'dd/mm/yy' });
+    });
+</script>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $('#txtSchool').autocomplete({
+            source: '@Url.Action("AutocompleteSchool")'
+        });
+    }) 
+</script>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $('#txtTesis').autocomplete({
+            source: '@Url.Action("AutocompleteThesis")'
+        });
+    }) 
+</script>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $('#txtElective1').autocomplete({
+            source: '@Url.Action("AutocompleteElective")'
+        });
+    }) 
+</script>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $('#txtElective2').autocomplete({
+            source: '@Url.Action("AutocompleteElective")'
+        });
+    }) 
+</script>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $('#txtElective3').autocomplete({
+            source: '@Url.Action("AutocompleteElective")'
+        });
+    }) 
+</script>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $('#txtElective4').autocomplete({
+            source: '@Url.Action("AutocompleteElective")'
+        });
+    }) 
+</script>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $('#txtElective5').autocomplete({
+            source: '@Url.Action("AutocompleteElective")'
+        });
+    }) 
+</script>
+
+<h2>Editar</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Estudio</legend>
+             
+        <div class="editor-label">
+            <h3>Institucion *</h3>
+        </div>
+        <div class="editor-field">
+                 <p>
+                    @if ((bool) ViewBag.Seleccionado1)
+                    {
+                        TempData["Seleccionado"] = "true";
+                        <input type="text" name="txtSchool" id="txtSchool" style = "width:150px" value="@ViewBag.Seleccionado11"/>
+                    }
+                    else
+                    {
+                        TempData["Seleccionado"] = "false";
+                        <input type="text" name="txtSchool" id="txtSchool" style = "width:150px" value="@ViewBag.Seleccionado11"/>
+                        <p class="alert error">@TempData["Error1"]</p>
+                    }
+                </p>
+        </div>    
+
+        <div class="editor-label">
+            <h3>Programa</h3>
+        </div>
+        <div class="editor-field">
+            <select name="programas" id="txtProgramas">
+                <option>Ingenieria de Sistemas</option>
+                <option>Ingenieria Automatica</option>
+                <option>Ingenieria de Electronica</option>
+                <option>Telematica</option>
+            </select>
+        </div>
+
+        <div class="editor-label">
+            <h3>Título *</h3>
+        </div>
+        <div class="editor-field">
+            <p>
+                    @if ((bool) ViewBag.Seleccionado2)
+                    {
+                        TempData["Seleccionado"] = "true";
+                        @Html.EditorFor(model => model.Grade)
+                    }
+                    else
+                    {
+                        TempData["Seleccionado"] = "false";
+                        @Html.EditorFor(model => model.Grade)
+                        <p class="alert error">@TempData["Error1"]</p>
+                    }
+                </p>
+        </div>
+        <div class="editor-label">
+            <h3>Electivas</h3>
+        </div>
+       @* 
+        @for (int indice = 0; indice < 5; indice++)
+        {
+            var ni = indice + 1;
+            <div class="c12">
+                <div class= "c1 first">
+                    <p style="font-size: 12px">Electiva @ni</p>&nbsp;
+                </div>
+                <div>
+                    @Html.EditorFor(model => model.Electives.ElementAt(indice).Name)
+                </div>      
+            </div>
+        }*@
+
+        
+
+        <div class="c12">
+            <div class= "c1 first">
+                <p style="font-size: 12px">Electiva 1</p>&nbsp;
+            </div>
+            @if (electivas1 > 0)
+            {   
+                <div class = "c3">
+
+                    <input type="text" name = "txtElective1" id="txtElective1" style="width: 260px" value = "@Model.Electives.ToList()[0].Name"/>
+                </div>
+            }
+            else
+            {
+                <div class = "c3">
+                    <input type="text" name = "txtElective1" id="txtElective1" style="width: 260px"/>
+                </div>
+            }
+        </div>
+        <div class = "c12">
+            <div class= "c1 first">
+                <p style="font-size: 12px">Electiva 2 </p>&nbsp;
+            </div>
+            @if (electivas2 > 0)
+            {   <div class = "c3">
+                    <input type="text" name = "txtElective2" id="txtElective2" style="width: 260px" value = "@Model.Electives.ToList()[1].Name"/>
+                </div>
+            }
+            else
+            {   <div class = "c3">
+                <input type="text" name = "txtElective2" id="txtElective2" style="width: 260px"/>
+                </div>
+            }
+        </div>
+        <div class="c12">
+            <div class= "c1 first">
+                <p style="font-size: 12px">Electiva 3 </p>&nbsp;
+            </div>
+            @if (electivas3 > 0)
+            {
+                <div class = "c3">
+                    <input type="text" name = "txtElective3" id="txtElective3" style="width: 260px" value = "@Model.Electives.ToList()[2].Name"/>
+                </div>
+            }
+            else
+            {
+                <div class = "c3">
+                    <input type="text" name = "txtElective3" id="txtElective3" style="width: 260px"/>
+                </div>
+            }
+        </div>
+        <div class = "c12">
+            <div class= "c1 first">
+                <p style="font-size: 12px">Electiva 4 </p>&nbsp;
+            </div>
+            @if (electivas4 > 0)
+            {
+                <div class = "c3">
+                    <input type="text" name = "txtElective4" id="txtElective4" style="width: 260px" value = "@Model.Electives.ToList()[3].Name"/>
+                </div>
+            }
+            else
+            {
+                <div class = "c3">
+                    <input type="text" name = "txtElective4" id="txtElective4" style="width: 260px"/>
+                </div>
+            }
+        </div>
+        <div class = "c12">
+            <div class= "c1 first">
+                <p style="font-size: 12px">Electiva 5 </p>&nbsp;
+            </div>
+            @if (electivas5 > 0)
+            {
+                <div class = "c3">
+                    <input type="text" name = "txtElective5" id="txtElective5" style="width: 260px" value = "@Model.Electives.ToList()[4].Name"/>
+                </div>
+            }
+            else
+            {
+                <div class = "c3">
+                    <input type="text" name = "txtElective5" id="txtElective5" style="width: 260px"/>
+                </div>
+            }
+        </div>
+        <div class="editor-label">
+            <h3>Fecha Inicio *</h3>
+        </div>
+        <div class="editor-field">
+             <p>
+                @if ((bool) ViewBag.Seleccionado3)
+                {
+                    TempData["Seleccionado"] = "true";
+                     @Html.EditorFor(model => model.StartDate)
+                     <div class="alert error" id="errorStartDate"></div>
+                }
+                else
+                {
+                    TempData["Seleccionado"] = "false";
+                     @Html.EditorFor(model => model.StartDate)
+                    <p class="alert error">@TempData["Error3"]</p>
+                    <div class="alert error" id="errorStartDate"></div>
+                }
+            </p>
+        </div>
+
+        <div class="editor-label">
+            <h3>Fecha Final *</h3>
+        </div>
+        <div class="editor-field">
+             <p>
+                @if ((bool)ViewBag.Seleccionado4)
+                {
+                    TempData["Seleccionado"] = "true";
+                    @Html.EditorFor(model => model.EndDate)
+                    <div class="alert error" id="errorendDate"></div>
+                }
+                else
+                {
+                    TempData["Seleccionado"] = "false";
+                    @Html.EditorFor(model => model.EndDate)
+                    <p class="alert error">@TempData["Error4"]</p>
+                    <div class="alert error" id="errorendDate"></div>
+                }
+            </p>
+        </div>
+
+        <div> 
+            <div class="editor-label">
+                <h3>Tesis</h3>
+            </div>
+           @* @if (titulo != null)
+            {*@
+                <div class="editor-field">
+                        @Html.EditorFor(model => model.Thesis.Title)
+                        @*<input type="text" name="txtTesis" id="txtTesis" style = "width:150px" value = "@Model.Thesis.Title"/>*@
+                </div>
+                <div class="editor-label">
+                    <h3>Descripción</h3>
+                </div>
+                @*if (@Model.Thesis.Description != null)
+                {
+                 <div class="editor-field">
+                        <textarea name="txtDeswcription" rows="10" cols="40" id = "txtDescripcion">@Model.Thesis.Description</textarea>
+                </div>    
+                }
+                else
+                {*@
+                <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Thesis.Description)
+                        @*<textarea name="txtDescription" rows="10" cols="40" id = "txtDescripcion2">Escribe aquí la descripción de tu tesis</textarea>*@
+                </div>    
+             @*   }
+
+            }
+            else
+            {
+                <div class="editor-field">
+                        <input type="text" name="txtTesis" id="txtTesis" style = "width:150px"/>
+                </div>
+                <div class="editor-label">
+                    <h3>Descripción</h3>
+                </div>
+                <div class="editor-field">
+                        <textarea name="txtDescription" rows="10" cols="40" id = "txtDescripcion1">Escribe aquí la descripción de tu tesis</textarea>
+                </div>  
+            }*@
+            &nbsp
+            </div>
+                @Html.HiddenFor(model => model.IdUser)
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.IdSchool)
+                <input type="hidden" name="wizard" id="wizard" value="@ViewBag.thewizard"/>
+            <div>
+            &nbsp
+        </div>
+        <div>
+            <input type="submit" value="Guardar" class="ebutton blue"/> &nbsp
+            @Html.ActionLink("Regresar", "Index", "Study", new { id = ViewBag.userId, wizardStep = wizard }, htmlAttributes: new { @class = "ebutton blue" })
+        </div>
+            
+        
+    </fieldset>
+}

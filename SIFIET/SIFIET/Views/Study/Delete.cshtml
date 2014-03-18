@@ -1,0 +1,53 @@
+﻿@model SIFIET.Models.Study
+
+@{
+    ViewBag.Title = "Eliminar Estudio";
+    var wizard = ViewBag.WizardStep;
+
+    if (wizard == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutW.cshtml";
+        wizard = 1;
+        ViewBag.thewizard = 1;
+    }
+}
+
+<h2>Eliminar Estudios</h2>
+
+<h3>¿Está seguro de eliminar este estudio?</h3>
+<fieldset>
+    <legend>Estudio</legend>
+
+    <div class="display-label">Institución</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.School.Name)
+    </div>
+
+    <div class="display-label">Usuario</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User.PhoneNumber)
+    </div>
+
+    <div class="display-label">Grado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Grade)
+    </div>
+
+    <div class="display-label">Fecha Inicio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">Fecha Fin</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+       
+        <input type="submit" value="Eliminar" class="ebutton blue"/> &nbsp
+        @Html.ActionLink("Regresar", "Index", "Study", new { id = ViewBag.IdUser, wizardStep = wizard }, htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}

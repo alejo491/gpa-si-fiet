@@ -1,0 +1,49 @@
+﻿@model SIFIET.Models.Question
+
+@{
+    ViewBag.Title = "Eliminar Pregunta " + @ViewBag.Topic.Description;
+}
+
+<div class="grid">
+    <div class="c12">
+<h2>Eliminar Pregunta del Tema  <strong> <i> @ViewBag.Topic.Description </i></strong></h2>
+ </div>
+    <div class="c12">
+        <div class="c9 first" id="content">    
+<h3>¿Está Seguro de Eliminarlo?</h3>
+<fieldset>
+   
+    <div class="display-label">Tipo de Pregunta</div>
+    <div class="display-field">
+        <p> @Html.DisplayFor(model => model.Type) </p>
+    </div>
+
+    <div class="display-label">Enunciado de la Pregunta</div>
+    <div class="display-field">
+        <p> @Html.DisplayFor(model => model.Sentence) </p>
+    </div>
+
+    <div class="display-label">Orden de la Pregunta</div>
+    <div class="display-field">
+        <p> @Html.DisplayFor(model => model.QuestionNumber)</p>
+    </div>
+
+    <div class="display-label">Es Obligatorio</div>
+    <div class="display-field">
+        <p>
+        @{
+           Write(Model.IsObligatory == 0 ? "No" : "Si");
+        }
+        </p>
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Borrar Pregunta" class="ebutton2 blue"/> &nbsp; @Html.ActionLink("Regresar al listado", "Index", routeValues: new { id = ViewBag.Topic.Id }, htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}
+        </div>
+        <div class="c3 last" id="layout">@Html.Partial("_LayoutSideBar")</div>
+    </div>
+&nbsp;
+</div>

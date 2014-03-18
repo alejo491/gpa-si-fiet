@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SIFIET.Models.School>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de las Instituciones</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Institución", "Create", null, htmlAttributes: new { @class = "ebutton blue" })
+</p>
+<table>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <div class = " left "> @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btnedit", title = "Editar Institución" }) &nbsp</div>
+            <div class = " left "> @Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btndetails", title = "Ver Institución" }) &nbsp</div>          
+        </td>
+    </tr>
+}
+
+</table>

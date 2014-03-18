@@ -1,0 +1,480 @@
+﻿/*Configuracion general Cuerpo*/
+
+body {
+    background: #E6E6E6 url(themes/base/images/fon-body.png) repeat-x;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    height: 100%;
+    min-width:950px;
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+/* HEADINGS-- hoja de estilos unicauca
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 
+{
+    font: bold 20px 'Arial Narrow','Helvetica Narrow',Tahoma,sans-serif;
+    font-size: 1.5em;
+    color: #0C2876;
+}
+
+h1 {
+    font-size: 1.7em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    background-color: inherit;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* Fin configuracion HEADINGS */
+
+/* CONFIGURACION DE MAQUETA PRINCIPAL */
+#Maqueta{
+    margin: 0 auto;
+    width: 100%;
+    
+}
+
+/*configuracion lados externos a la pagina  "Ramas"*/
+#izquierda {
+    width: 5%;
+    float: left;
+    margin-left: 33px;
+}
+#izquierda img
+{
+    width: 100%;
+    min-height: 150px;
+}
+
+#derecha {
+width: 5%;
+float: left;
+}
+#derecha img
+{
+    width: 100%;
+    min-height: 150px;
+}
+
+/*configuracion cuerpo principal de la pagina*/
+#page 
+{
+    display: block;
+    width: 85%;
+    text-align: left;
+    float: left;
+}
+
+/*configuracion de cabecera incluye menu de acciones*/
+#cabecera
+{
+    position:relative;
+    /*width: 88.9%;¨*/
+    top: 0px;
+}
+
+/*parte superior de la cabecera no incluye menu de acciones*/
+header, #header 
+{
+    height: 120px;
+}
+
+/*configura el ancho y la imagen de fondo de la cabecera*/
+#superior
+{
+    height: 120px;
+    background: url(themes/base/images/fon-cabecera-barra-logo.png) no-repeat 0px 0px;
+}
+
+/*configura los botones del inicio de secion*/
+#logindisplay {
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 12px;
+    color: White;
+}
+
+#logindisplay a:link {
+    color: white;
+    text-decoration: none;
+}
+
+#logindisplay a:visited {
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover {
+    color: white;
+    text-decoration: none;
+}
+/*Fin configuracion botenes de inicio de secion*/
+
+/*configura el div en el que se mostrara el mensaje principal del sistema*/
+#msg_sistema
+{
+    float: right;
+    height: 50px;
+    margin-top: 20px;
+    text-align: right;
+    color: white;
+    margin-right: 20px;
+    margin-left:250px;
+}
+/*configuracion del menu de acciones*/
+#menucontainer
+{
+    height: 36px;
+}
+/*lados del menu de acciones*/
+#menuizq
+{
+    height: 36px;
+    background: url(themes/base/images/menu-pri-esq-izq.png) no-repeat left top;
+}
+#menuder
+{
+    height: 36px;
+    padding: 0 12px;
+    background: url(themes/base/images/menu-pri-esq-der.png) no-repeat right top;
+}
+
+/*configuracion lista menu de acciones*/
+
+ul#menu {
+   padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: left;
+    height: 36px;
+    background: url(themes/base/images/menu-pri-fondo.png) repeat-x;
+}
+
+ul#menu li {
+    display: block;
+    float: left;
+    border-left: 1px solid #1039A7;
+    border-right: 1px solid #041544;
+}
+ul#menu li.first{
+    border-left: none;
+}
+ul#menu li.end{
+    border-right: none;
+}
+
+ul#menu li a {
+    padding: 10px 20px;
+    text-decoration: none;   
+    color: white;
+    font-size: 14px;
+    line-height: 34px 
+}
+
+ul#menu li a:hover {
+    color: Orange;
+    text-decoration: none;
+}
+/*cierre configuracion menu de acciones*/
+/*cierre configuracion cabecera*/
+
+/*configuracion contenido de pagina*/
+#contenido
+{
+    clear: both;
+    background: #FFFFFF url(themes/base/images/fon-con-contenido.png) repeat-x 0 0;    
+    /*margin-top: 120px;*/
+}
+
+#main {
+    padding: 30px 30px 15px 30px;
+    border-radius: 4px 0 0 0;
+    -webkit-border-radius: 4px 0 0 0;
+    -moz-border-radius: 4px 0 0 0;
+    min-height: 300px;
+}
+#main2 {
+    padding: 30px 30px 15px 30px;
+    border-radius: 4px 0 0 0;
+    -webkit-border-radius: 4px 0 0 0;
+    -moz-border-radius: 4px 0 0 0;
+    min-height: 150px;
+}
+div .contenido-izq
+{
+   float:left;
+   width:60%;
+   min-height:300px;
+   padding: 20px;
+}
+div .contenido-der
+{
+   float:left;
+   text-align:right;
+   padding: 20px;
+   width: 40%;
+}
+/*configuracion footer de la pagina */
+footer, 
+#footer {
+    padding-bottom: 5px;
+    clear: both;
+    height: 70px;
+}
+#footer img
+{
+    background: #FFFFFF;
+    width: 100%;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+/*
+table {
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+
+table tr {
+    padding: 5px;
+    border: solid 1px #D8D8D8;
+    background: rgb(247, 247, 247);
+}
+table tr.alt
+{
+    padding: 5px;
+    border: solid 1px #D8D8D8;
+    background-color:White;
+}
+
+table tr.head 
+{
+    background: rgb(247, 247, 247);
+    padding: 6px 5px;
+    text-align: left;
+    border: solid 1px #D8D8D8;
+    color:rgb(5, 5, 5);
+}
+
+*/
+/*Estilos para maquetar formularios*/
+.fila {
+  clear: both;
+  width: 900px;
+  height: 25px;
+}
+ 
+.fila span.etiqueta {
+  float: left;
+  width: 129px;
+  margin-right: 15px;
+  margin-top: 2px;
+  text-align: right;
+}
+
+.fila span.etiqueta2 {
+  float: left;
+  width: 129px;
+  margin-right: 50px;
+  margin-top: 5px;
+  text-align: right;
+}
+ 
+.fila span.form-el {
+  float: left;
+  width: 220px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+ 
+.fila span.error {
+  font-size: 11px;
+  color: red;
+  width: 210px;
+  float: left;
+  text-align: left;
+  margin-left: 180px;
+  padding-bottom: 12px;
+}
+
+div.tema {
+    border: ButtonShadow 54px #0C2876;
+    padding: 30px;    
+    
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.display-label, 
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.display-field, 
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+/*
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+input[type="text"], 
+input[type="password"] {
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 1.2em;
+    color: #444;
+    width: 200px;
+}
+
+select {
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 1.2em;
+    color: #444;
+}
+
+input[type="submit"] {
+    font-size: 1.2em;
+    padding: 5px;
+}
+*/
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+/*.display-label, 
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.display-field, 
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+.text-box {
+    width: 30em;
+}
+
+.text-box.multi-line {
+    height: 6.5em;
+}
+
+.tri-state {
+    width: 6em;
+}*/
+
+
+/* MISC  
+----------------------------------------------------------*/
+/*
+.clear {
+    clear: both;
+}
+
+.error {
+    color: Red;
+}
+
+div#title {
+    display: block;
+    float: left;
+    text-align: left;
+}
+
+*/
+
+.vacancy {
+	padding: 12px 50px;	
+}
+
+.vacancy .title {
+	letter-spacing: -1px;
+	font-size: 1.4em;
+	color: #0C2876;
+}
+
+.vacancy .meta {
+	margin: 0 0 20px 0;
+	padding: 0 0 20px 0;
+	border-bottom: 1px solid #EFEFEF;
+	line-height: normal;
+	color: #666666;
+}
+
+.preview img {
+  max-height:120px;
+  max-width:120px;
+}

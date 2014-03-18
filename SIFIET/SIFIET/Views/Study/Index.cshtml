@@ -1,0 +1,82 @@
+﻿@model IEnumerable<SIFIET.Models.Study>
+ 
+
+@{
+    ViewBag.Title = "Estudios";
+    var wizard = ViewBag.WizardStep;
+    //if ((string)Session["Wizard"] == "1")
+        if (wizard == 1)
+        {
+            Layout = "~/Views/Shared/_LayoutW.cshtml";
+            wizard = 1;
+        }
+}
+
+<h2>Estudios Realizados</h2>
+@{
+    var i = ViewBag.UserId;   
+}
+<p>
+    @Html.ActionLink("Agregar Estudio", "Create", new {wizardStep = wizard }, htmlAttributes: new { @class = "ebutton blue" }) &nbsp
+    
+    @{if (wizard != 1)
+      {
+          @Html.ActionLink("Regresar", "Begin", "User", new { id = @i, wizardStep = wizard }, htmlAttributes: new { @class = "ebutton blue" })
+      }
+    }
+</p>
+<br/>
+<div class="alert success">
+    @TempData["Exito"]
+</div>
+<br/>
+<table>
+    <tr>
+        <th>
+            Institución
+        </th>
+        <th>
+            Título
+        </th>
+        <th>
+            Fecha de Inicio
+        </th>
+        <th>
+            Fecha de Finalización
+        </th>
+         <th>
+            Opciones
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.School.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            <div class = " left "> @Html.ActionLink(" ", "Edit", new { id = item.Id, idUser = @i, wizardStep = wizard }, htmlAttributes: new { @class = "btnedit", title = "Editar Estudio" }) &nbsp</div>
+            
+            <div class = " left "> @Html.ActionLink(" ", "Details", new { id = item.Id, idUser = @i, wizardStep = wizard }, htmlAttributes: new { @class = "btndetails", title = "Ver Estudio" }) &nbsp</div>
+              @{if (wizard != 1)
+                {
+                <div class = " left "> @Html.ActionLink(" ", "Delete", new { id = item.Id, idUser = @i, wizardStep = wizard }, htmlAttributes: new { @class = "btndelete", title = "Borrar Estudio" }) &nbsp</div>
+                }
+                }
+        </td>
+    </tr>
+}
+
+</table>
+

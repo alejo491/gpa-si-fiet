@@ -1,0 +1,22 @@
+﻿@model SIFIET.Models.Elective
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Información de la Electiva</h2>
+
+<fieldset>
+    <legend>Electiva</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div></div>
+    <div>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "ebutton blue" }) 
+    @Html.ActionLink("Regresar", "Index", "", htmlAttributes: new { @class = "ebutton blue" })
+</div>
+</fieldset>
+

@@ -1,0 +1,44 @@
+﻿@model SIFIET.Models.ExperiencesBoss
+
+@{
+    ViewBag.Title = "Eliminar";
+    var wizard = ViewBag.WizardStep;
+    if (wizard == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutW.cshtml";
+        wizard = 1;
+    }
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro de eliminar este registro?</h3>
+<fieldset>
+    <legend>Jefe Directo</legend>
+    <input type="hidden" name="wizard" id="wizard" value="@ViewBag.WizardStep"/>
+    <div class="display-label">Nombre Jefe</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Boss.Name)
+    </div>
+
+    <div class="display-label">Chargo Desempeñado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Experience.Charge)
+    </div>
+
+    <div class="display-label">Fecha inicio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">Fecha Fin</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Eliminar" class="ebutton blue"/> &nbsp
+        @Html.ActionLink("Volver", "Index", new { wizardStep = wizard}, htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}

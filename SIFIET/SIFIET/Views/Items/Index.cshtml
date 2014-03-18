@@ -1,0 +1,80 @@
+﻿@model IEnumerable<SIFIET.Models.Item>
+
+@{
+    ViewBag.Title = "Item del reporte " + @ViewBag.Topic.Description;
+}
+
+<div class="grid">
+	<div class="c12">
+    		<h2>Items del reporte <strong><i>@ViewBag.Topic.Description</i></strong></h2>
+	</div>
+	<div class="c12">
+    	<div class="c9 first" id=”contenido”>
+        	
+        <div class="alert success">@TempData["Create"]</div>
+        <div class="alert success">@TempData["Update"]</div>
+        <div class="alert success">@TempData["Delete"]</div>
+
+        <p>
+            @Html.ActionLink("Crear Item", "Create", new { id = ViewBag.Topic.Id }, htmlAttributes: new { @class = "ebutton blue" })
+        </p>
+        <table>
+            <tr>
+
+                <th>
+                    Nombre de la tabla
+                </th>
+                <th>
+                    Nombre del campo
+                </th>
+                <th>
+                    Número de página
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+ 
+                <td>
+                    @Html.DisplayFor(modelItem => item.TableName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FieldName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PageNumber)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = ViewBag.Topic.Id, idit=item.Id }, htmlAttributes: new { @class = "ebutton blue" }) &nbsp
+
+
+
+                    @Html.ActionLink("Ver", "Details", new { id=item.Id } , htmlAttributes: new { @class = "ebutton blue" }) &nbsp 
+
+                    @Html.ActionLink("Eliminar", "Delete", new { id=item.Id }   , htmlAttributes: new { @class = "ebutton blue" }) &nbsp
+
+                </td>
+
+            </tr>
+        }
+
+        </table>
+        <br />
+    	</div>
+    	<div class="c3 last" id=”layout”>@Html.Partial("_LayoutReports")</div>
+	</div>
+
+    <br />
+       <br />
+                 <p>
+                    @Html.ActionLink("Regresar", "Index","Reports", null, htmlAttributes: new { @class = "ebutton blue" })
+
+                </p>
+
+	&nbsp;
+</div>
+
+
+
+

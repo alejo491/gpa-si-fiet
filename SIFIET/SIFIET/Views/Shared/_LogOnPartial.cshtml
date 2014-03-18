@@ -1,0 +1,106 @@
+﻿@using iTextSharp.text
+@if (Request.IsAuthenticated)
+{
+<div class="grid">
+    <div class="c12">
+        <div class="c9"></div>
+        <div class="c3">
+            <div id="usermenu">
+          <div class="">
+            <ul>
+                <li></li>
+                <li>@Html.ActionLink(User.Identity.Name, "Redirect", "Verify")</li>
+                <li>@Html.ActionLink("Editar Perfil", "Edit", "verify")</li>
+                <li>@Html.ActionLink("Salir", "LogOff", "Account")</li>
+            </ul>
+       </div>            
+    
+    </div>
+        </div>
+    </div>
+    </div>
+    
+    
+}
+else
+{
+
+   @* <div class="rigth"><div class="left">|</div><fb:login-button perms="email,user_checkins" autologoutlink="true" >Entrar con Facebook</fb:login-button>
+    <div id="fb-root" style="display:inline; margin-right:0px;"></div></div>*@
+    
+   @* @:<div class="rigth">@Html.ActionLink("Iniciar Sesión ", "LogOn", "Account")</div>
+    @:<div class="rigth"><strong>  |</strong>@Html.ActionLink(" ", "LogOn", "Account", null, htmlAttributes: new { @class = "btnlogin", title = "Iniciar Sesión " }) </div>
+    @:<div class="rigth">@Html.ActionLink("Regístrese ", "Register", "Account")</div> 
+    @:<div class="rigth">@Html.ActionLink(" ", "Register", "Account", null, htmlAttributes: new { @class = "btnregister", title = "Regístrese" }) </div>*@
+    
+    <div class="grid">
+    <div class="c12">
+        <div class="c8"></div>
+        <div class="c4">
+            <div id="usermenu">
+          <div class="">
+            <ul>
+                <li><strong></strong></li>
+                <li> @Html.ActionLink("Iniciar Sesión ", "LogOn", "Account") </li>
+                <li>@Html.ActionLink("Regístrese ", "Register", "Account")</li>
+                @*<li><fb:login-button perms="email,user_checkins" autologoutlink="true" >Entrar con Facebook</fb:login-button>
+                    <div id="fb-root" style="display:inline; margin-right:0px;"></div></li>*@
+                @*<li>@Html.ActionLink("Salir", "LogOff", "Account")</li>*@
+            </ul>
+       </div>            
+    
+    </div>
+        </div>
+    </div>
+    </div>
+    
+   
+}
+<script language="javascript" type="text/javascript">
+    // Load the SDK Asynchronously
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/es_LA/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    } (document));
+
+    // Init the SDK upon load
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '412456318862572',
+            status: true,
+            cookie: true,
+            xfbml: true,
+            oauth: true,
+            locale: 'es_LA'
+        });
+        FB.Event.subscribe('auth.login', function (response) {
+            var credentials = { accessToken: response.authResponse.accessToken };
+            SubmitLogin(credentials);
+        });
+
+        function SubmitLogin(credentials) {
+            $.ajax({
+                url: "/account/facebooklogin",
+                type: "POST",
+                data: credentials,
+                error: function () {
+                    alert("Error al ingresar con tu cuenta de Facebook.");
+                },
+                success: function () {
+
+                    window.location.reload();
+
+                }
+
+            });
+        }
+
+    };
+</script>

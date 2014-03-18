@@ -1,0 +1,41 @@
+﻿@model SIFIET.Models.Topic
+@{
+    ViewBag.Title = "Editar Tema";
+}
+<div class="grid">
+    <div class="c12">
+        <h2>
+            Editar Tema</h2>
+    </div>
+    <div class="c12">
+        <div class="c5 first" id="”contenido”">
+            <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+            <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+            @using (Html.BeginForm()) {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend>Tema</legend>
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="editor-label">
+                        <h3>@Html.LabelFor(model => model.Description)</h3>
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Description)
+                        <div class="alert error">
+                            @Html.ValidationMessageFor(model => model.Description)
+                        </div>
+                    </div>
+                    <br />
+                    <p>
+                        <input type="submit" value="Guardar" class="ebutton2 blue" />
+                        &nbsp;
+                        @Html.ActionLink("Regresar", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+                    </p>
+                </fieldset>
+            }
+            <br />
+        </div>
+        <div class="c7 last" id="”layout”">@Html.Partial("_LayoutSideBar")</div>
+    </div>
+    &nbsp;
+</div>

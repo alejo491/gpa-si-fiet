@@ -1,0 +1,35 @@
+﻿@model SIFIET.Models.Boss
+@{
+    ViewBag.Title = "Detalles del jefe";
+    var wizard = ViewBag.WizardStep;
+    if (wizard == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutW.cshtml";
+        wizard = 1;
+    }
+}
+
+<h2>Detalles del jefe</h2>
+
+<fieldset>
+    <legend>Información registrada</legend>
+
+    <div class="display-label">Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">E-mail</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">Teléfono</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Volver", "Details", "Experiences", new { id= Session["IdExperience"], wizardStep= wizard}, new { @class = "ebutton2 blue linkmenu" })<br />
+</p>

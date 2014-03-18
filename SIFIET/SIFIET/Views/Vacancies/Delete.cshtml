@@ -1,0 +1,74 @@
+﻿@model SIFIET.Models.Vacancy
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h1>Borrar</h1>
+
+<h3>¿Está seguro de que quiere eliminar esta vacante?</h3>
+<fieldset>
+    <legend>Información de la vacante</legend>
+
+    <div class="display-label"><strong>Cargo ofrecido</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Charge)
+    </div>
+
+    <div class="display-label"><strong>Jornada de trabajo</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DayTrip)
+    </div>
+
+    <div class="display-label"><strong>Número de horas de la jornada de trabajo</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HoursNumber)
+    </div>
+
+    <div class="display-label"><strong>Perfil Profesional requerido</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProfessionalProfile)
+    </div>
+
+    <div class="display-label"><strong>Fecha de Publicación</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PublicationDate)
+    </div>
+
+    <div class="display-label"><strong>Fecha de Cierre</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClosingDate)
+    </div>
+
+    <div class="display-label"><strong>Número de Vacantes ofrecidas</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VacanciesNumber)
+    </div>
+
+    <div class="display-label"><strong>Salario ofrecido</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Salary)
+    </div>
+
+    <div class="display-label"><strong>Descripción</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    
+    <div class="display-label"><strong>Compañía que ofrece el cargo</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Company.Name)
+    </div>
+    <br/>
+    <p><strong>Información de contacto de la compañía @Html.DisplayFor(model => model.Company.Name)</strong><br/>
+                Dirección: @Html.DisplayFor(model => model.Company.Address) - @Html.DisplayFor(model => model.Company.City)<br/>
+                Teléfono: @Html.DisplayFor(model => model.Company.Phone)<br/>
+                E-Mail: @Html.DisplayFor(model => model.Company.Email)</p>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Eliminar" class="ebutton blue" />&nbsp;
+        @Html.ActionLink("Volver a la lista", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}

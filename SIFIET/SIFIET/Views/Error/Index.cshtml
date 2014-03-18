@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+@{
+    if (ViewBag.ErrorType == null)
+    {
+        <h2>
+            Lo sentimos, usted no tiene los permisos suficientes para acceder a esta pagina.
+        </h2>
+    }
+    else
+    {
+       <h2> @ViewBag.ErrorType </h2>
+    }
+}
+
+    

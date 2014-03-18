@@ -1,0 +1,46 @@
+﻿@model SIFIET.Models.User
+@{
+    ViewBag.Title = "Estado";
+}
+<h2>
+    Cambiar de Estado</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Usuario @Model.aspnet_Users.UserName</legend>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.PhoneNumber)
+        @Html.HiddenFor(model => model.FirstNames)
+        @Html.HiddenFor(model => model.LastNames)
+        @Html.HiddenFor(model => model.Address)
+        @Html.HiddenFor(model => model.CellphoneNumber)
+        @Html.HiddenFor(model => model.BirthDate)
+        @Html.HiddenFor(model => model.Gender)
+        @Html.HiddenFor(model => model.MaritalStatus)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.States)
+        </div>
+        <div class="editor-field">
+            <div>
+                Activo
+                @Html.RadioButtonFor(model => model.States, "true")
+            </div>
+            <div>
+                Inactivo
+                @Html.RadioButtonFor(model => model.States, "false")
+            </div>
+            <div>
+                &nbsp
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Guardar" class="ebutton blue" />
+            &nbsp
+            @Html.ActionLink("Registrar al listado de Usuarios", "Index", "", htmlAttributes: new { @class = "ebutton blue" })
+        </div>
+    </fieldset>
+
+}

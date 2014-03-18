@@ -1,0 +1,40 @@
+﻿@model SIFIET.Models.Topic
+@{
+    ViewBag.Title = "Eliminar Tema";
+}
+<div class="c9">
+</div>
+<div class="grid">
+    <div class="c12">
+        <h2>
+            Eliminar</h2>
+    </div>
+    <div class="c12">
+        <div class="c7 first" id="”contenido”">
+            <h3>
+                ¿Está seguro de eliminar este tema?</h3>
+            <fieldset>
+                <h3>
+                    Tema</h3>
+                <div class="display-label">
+                    <h3>
+                        Descipcion</h3>
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Description)
+                </div>
+                <br />
+            </fieldset>
+            <br />
+            @using (Html.BeginForm()) {
+                <p>
+                    <input type="submit" value="Eliminar" class="ebutton2 blue" />
+                    &nbsp;
+                    @Html.ActionLink("Regresar", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+                </p>
+            }
+        </div>
+        <div class="c5 last" id="”layout”">@Html.Partial("_LayoutSideBar")</div>
+    </div>
+    &nbsp;
+</div>

@@ -1,0 +1,46 @@
+﻿@model SIFIET.Models.Company
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h1>Detalles</h1>
+
+<fieldset>
+    <legend>Información de la compañía</legend>
+
+    <div class="display-label"><strong>Nombre</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label"><strong>Teléfono</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+
+    <div class="display-label"><strong>Dirección</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label"><strong>E-Mail</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label"><strong>Ciudad</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.City)
+    </div>
+
+    <div class="display-label"><strong>Sector</strong></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sector)
+    </div>
+</fieldset>
+<br/>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, htmlAttributes: new { @class= "ebutton blue"}) &nbsp;
+    @Html.ActionLink("Volver a la lista", "Index",null, htmlAttributes: new {@class ="ebutton blue"})
+</p>

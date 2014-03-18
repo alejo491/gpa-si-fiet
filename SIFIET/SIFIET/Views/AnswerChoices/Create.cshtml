@@ -1,0 +1,94 @@
+﻿@model SIFIET.Models.AnswerChoice
+
+@{
+    ViewBag.Title = "Crear Opciones de Respuesta";
+}
+
+
+
+<div class="grid">
+
+    <div class="c12">
+
+           <h2>Crear Opción de Respuesta para la Pregunta @ViewBag.Question.Sentence </h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    </div>
+
+    <div class="c12">
+
+       <div class="c9 first" id=”content”>
+
+           @using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Opciones de Respuesta</legend>
+        <br/>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sentence)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Sentence)
+            <div class="alert error">
+            @Html.ValidationMessageFor(model => model.Sentence)
+            </div>
+        </div>
+        <br/>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumericValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumericValue)
+            <div class="alert error">
+            @Html.ValidationMessageFor(model => model.NumericValue)
+            </div>
+        </div>
+        <br/>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Type)
+        </div>
+        <div class="editor-field">
+            
+            @Html.RadioButtonFor(model =>model.Type,"Normal",true) Normal
+            @Html.RadioButtonFor(model =>model.Type,"Con texto",false) Con texto
+            <div class="alert error">
+            @Html.ValidationMessageFor(model => model.Type)
+            </div>
+            <br/>
+        </div>
+        <br/>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AnswerNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AnswerNumber)
+            <div class="alert error">
+            <p>@Html.ValidationMessageFor(model => model.AnswerNumber)</p>			
+            <p>@TempData["Error2"]</p>
+            </div>
+        </div>
+        <br/>
+
+        <p>
+            <input type="submit" value="Crear Opción de respuesta" class="ebutton2 blue"/> &nbsp; @Html.ActionLink("Regresar al listado", "Index", routeValues: new { id = ViewBag.Question.Id }, htmlAttributes: new { @class = "ebutton blue" })
+        </p>
+    </fieldset>
+}
+
+       </div>
+
+       <div class="c3 last" id=”layout”>@Html.Partial("_LayoutSideBar")</div>
+
+    </div>
+
+    &nbsp;
+</div>
+
+
+

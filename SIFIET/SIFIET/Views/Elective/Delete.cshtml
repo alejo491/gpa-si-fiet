@@ -1,0 +1,23 @@
+﻿@model SIFIET.Models.Elective
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Está seguro que desea eliminar esta electiva?</h3>
+<fieldset>
+    <legend>Electiva</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" class="ebutton blue"/> |
+        @Html.ActionLink("Regresar", "Index", "", htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}

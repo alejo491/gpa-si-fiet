@@ -1,0 +1,23 @@
+﻿@model SIFIET.Models.School
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Está seguro que desea eliminar esta Institución?</h3>
+<fieldset>
+    <legend>Institución</legend>
+
+    <div class="display-label">Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" class="ebutton blue"/> 
+        @Html.ActionLink("Regresar", "Index", "", htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}

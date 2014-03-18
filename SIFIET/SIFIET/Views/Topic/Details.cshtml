@@ -1,0 +1,34 @@
+﻿@model SIFIET.Models.Topic
+@{
+    ViewBag.Title = "Detalles Tema";
+}
+<div class="grid">
+    <div class="c12">
+        <h2>
+            Detalles
+        </h2>
+    </div>
+    <div class="c12">
+        <div class="c7 first" id="”contenido”">
+            <fieldset>
+                <h3>
+                    Tema</h3>
+                <div class="display-label">
+                    <h3>
+                        Descipcion</h3>
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Description)
+                </div>
+                <br />
+            </fieldset>
+            <p>
+                @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, htmlAttributes: new { @class = "ebutton blue" })
+                &nbsp;
+                @Html.ActionLink("Regresar", "Index", null, htmlAttributes: new { @class = "ebutton blue" })
+            </p>
+        </div>
+        <div class="c5 last" id="”layout”">@Html.Partial("_LayoutSideBar")</div>
+    </div>
+    &nbsp;
+</div>

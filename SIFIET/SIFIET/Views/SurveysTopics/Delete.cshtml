@@ -1,0 +1,58 @@
+﻿@model SIFIET.Models.SurveysTopic
+
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<div class="grid">
+
+    <div class="c12">
+
+          <h2>Borrar tema de encuesta</h2>
+
+<h3>¿Está seguro que desea borrar el tema de la encuesta?</h3>
+
+    </div>
+
+    <div class="c12">
+
+       <div class="c9 first" id=”contenido”>
+
+           <fieldset>
+
+    <div class="display-label"><h3>Encuesta</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Survey.Name)
+    </div>
+    <br/>
+
+    <div class="display-label"><h3>Tema</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Topic.Description)
+    </div>
+    <br/>
+
+    <div class="display-label"><h3>Orden</h3></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TopicNumber)
+    </div>
+</fieldset>
+<br/>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Borrar" class=" ebutton2 blue" /> &nbsp;
+        @Html.ActionLink("Regresar al listado", "Index", routeValues: new { id = ViewBag.survey }, htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}
+
+       </div>
+
+       <div class="c3 last" id=”layout”>@Html.Partial("_LayoutSideBar")</div>
+
+    </div>
+
+    &nbsp;
+</div>
+
+
+

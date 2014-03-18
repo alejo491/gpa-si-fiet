@@ -1,0 +1,363 @@
+﻿@using SIFIET.Models
+
+@{
+    ViewBag.Title = "Llenar encuesta";
+    var wizard = ViewBag.WizardStep;
+    if (wizard == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutW.cshtml";
+        wizard = 1;
+    }
+}
+
+
+
+
+<div>
+    
+   @* <div id="wrapper">
+			<div id="paging_container1" class="container">
+				
+				
+				
+				<div class="content">
+					 
+					 
+				</div>	
+				<div class="page_navigation"></div>
+			</div>	   
+
+		</div>*@
+	
+    <h3>Responda las preguntas</h3>
+        
+
+    @using (Html.BeginForm())
+    {
+	
+        <fieldset>
+		
+        <div id="wrapper">
+            <div id="paging_container1" class="container">
+                <br />
+                 
+                <div class="content">
+                    @{
+                        int i = 1;
+                    }
+		            
+                    @foreach (SurveysTopic surveysTopic in ViewBag.questions)
+                    {
+                        
+                        @:<div class="ttema">
+                        @:<hr />
+                        @: <h2>@surveysTopic.Topic.Description </h2>
+                        @:<hr />
+                        
+                        foreach (Question question in surveysTopic.Topic.Questions)
+                        {
+                            @:<div>
+                            string cl = "";
+                            List<string> code = new List<string>();
+                            List<string> codetext = new List<string>();
+                            if (question.IsObligatory == 1)
+                            {
+                                cl = "required";
+                            }
+                            if (question.Type == "Multiple" && question.IsObligatory ==1)
+                            {
+                                foreach (var answerChoice in question.AnswerChoices)
+                                {
+                                    if (answerChoice.Type == "Con texto")
+                                    {
+                                        codetext.Add("tt" + answerChoice.Id);
+                                    }
+                                    else
+                                    {
+                                        code.Add("mu" + answerChoice.Id);
+                                    }
+
+                                }
+            
+
+                                <text><script type="text/javascript">
+                                          $(document).ready(function() {
+                                              $("form").submit(function() {
+                                                  if (@for (int j = 0; j < code.Count; j++)
+                                                      {
+                                                          if (j == 0)
+                                                          {
+                                                              @:!isCheckedById("@code[j]")
+                                                          }
+                                                          else
+                                                          {
+                                                              @: && !isCheckedById("@code[j]")				            
+                                                          }
+                                                      }
+                                                      @for(int k =0;k<codetext.Count; k++)
+                                                      {
+                                                          if (k == 0)
+                                                          {
+                                                              @:  && ( $("#@codetext[k]").attr('value') == ''
+                                                          }
+                                                          else
+                                                          {
+                                            
+                                                              @: && ( $("#@codetext[k]").attr('value') == ''
+                                                
+                                                          }
+
+                                                          if(k==codetext.Count-1)
+                                                          {
+                                                              @: )
+                                                          }
+                                                      }
+
+                                                      ) {
+                                                            //alert("Please select at least one selector");
+                                                            $("#@question.Id").text("Esta pregunta es obligatoria, debe marcar al menos una opción");
+                                                            $("#generalerrors").text("La pregunta @i  es obligatoria y no se ha contestado");
+                                                            return false;
+                                                        } else {
+                                                                   $("#@question.Id").text("");
+                                                                   return true; //submit the form
+                                                               }
+                                              });
+
+                                              function isCheckedById(id) {
+                                                  var checked = $("input[@@id=" + id + "]:checked").length;
+                                                  if (checked == 0) {
+                                                      return false;
+                                                  } else {
+                                                      return true;
+                                                  }
+                                              }
+                                          });
+                                      </script>
+                
+                                </text>
+
+                            }
+
+                            if (question.Type == "Unica")
+                            {
+                                List<string> c1 = new List<string>();
+                                List<string> c2 = new List<string>();
+                                string que = "un"+question.Id.ToString();
+                                foreach (var choice in question.AnswerChoices )
+                                {
+                                    if (choice.Type != "Normal")
+                                    {
+                                        c2.Add("tt" + choice.Id.ToString());
+                                    }
+                                }
+
+                                foreach (var vartexto in c2)
+                                {
+                                    <text>
+                                        <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                $("input[@@id=@que]").change(
+                                                    function () { $("#@vartexto").val(''); }
+                                                );
+
+                                                $("input[@@id=@vartexto]").change(
+                                                    function () {
+                                                        if ($("#@vartexto").attr('value') == '') {
+
+                                                            $("input[@@id=@que]").attr('checked', true);
+                                                        }
+                                                        else {
+
+                                                            $("input[@@id=@que]").attr('checked', false);
+                                                        }
+                                                    }
+                                                );
+                                            });
+                                        </script>
+
+                                    </text>
+                                }
+                            }
+            
+                            if ((question.Type == "Corta" || question.Type == "Larga") && question.IsObligatory == 1)
+                            {
+                                if (question.AnswerChoices.Count>0)
+                                {
+                                    string ida = "tt" + question.AnswerChoices.First().Id.ToString();
+                    
+                                    <text>
+                                        <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                $('form').submit(function () {
+                                                    if (($("#@ida").attr('value') == '')) {
+                                                        $("#@question.Id").text("Esta pregunta es obligatoria, debe marcar al menos una opción");
+                                                        $("#generalerrors").text("La pregunta @i  es obligatoria y no se ha contestado");
+                                                        return false;
+                                                    }
+                                                    else {
+                                                        $("#@question.Id").text("");
+                                                        return true;
+                                                    }
+                                                });
+                                            });
+                                        </script>
+                                    </text>
+                                }
+                
+                            }
+
+						@*@:<div class="row space-bot">*@
+                            @:<div class="c12">
+                            @:<p>
+                            @:<h3> Pregunta @i :   @question.Sentence </h3>
+						                            @*@Html.Label(question.Sentence)  *@
+                            @:</p>
+                            <br/>
+                            @:</div>             
+						@*@:</div>*@
+                            foreach (AnswerChoice answer in question.AnswerChoices)
+                            {
+                                string label = answer.Sentence.ToString();
+                                @:<div class="row space-bot">
+                                if (answer.Type == "Normal")
+                                {
+							    
+                                    if (question.Type == "Unica")
+                                    {
+                                        @:<div class="c1-8">
+                                    													  
+									@*@:<span class="etiqueta">*@
+                                        <div class="answeroption">  @label  </div>
+									@*@:</span>*@
+                                        @:</div>
+                                        @:<div class="c1-5">
+									@*@:<span class="form-el">  *@    
+                                        @Html.RadioButton("un" + question.Id.ToString(), answer.Id.ToString(), true)
+									@*@:</span> *@
+
+                                        @:</div>
+
+                                    }
+                                    if (question.Type == "Multiple")
+                                    {
+                                    
+                                        @:<div class="c1-8">
+									@*@:<div class="fila">                          
+									@:<span class="etiqueta">*@   
+                                    <div class="answeroption">    @label    </div>        
+									@*@Html.Label(answer.Sentence)*@
+									@*@:</span>
+                                    
+									@:<span class="form-el"> *@ 
+                                        @:</div> 
+                                        @:<div class="c1-5">
+                                        @Html.CheckBox("mu" + answer.Id.ToString(), "false")
+									@*@:</span>*@
+                                        @:</div> 
+                                    }
+                                    if (question.Type == "Corta")
+                                    {
+									@*@:<div class="c1-5">*@
+							        @*@:<span class="etiqueta"> 
+							        @Html.Label(answer.Sentence);*@
+						            @* @:</span>*@
+									@*@:<span class="form-el"> *@  
+                                   @* @:</div> *@
+                                        @:<div class="c1-5">
+                                        @Html.TextBox("tt" + answer.Id.ToString(), "", new { style = "width:400px" })
+									@*@:</span> *@
+                                        @:</div>  
+                                    }
+
+                                    if (question.Type == "Larga")
+                                    {
+                                    @*@:<div class="c1-5">*@
+						            @* @:<span class="etiqueta"> 
+							        @Html.Label(answer.Sentence)
+							        @:</span>*@
+							        @*@:</div>
+							        @:<div class="fila">*@
+									@*@:<span class="form-el"> *@
+                                    @*@:</div>*@
+                                        @:<div class="c1-5">
+                                        @Html.TextArea("tt" + answer.Id.ToString(), new { style = "width:700px;height:100px" })                              
+									@*@:</span> *@
+                                        @:</div>  
+                                    }
+                                }
+                                else
+                                {
+                                    @:<div class="c1-5">
+								@*@:<div class="fila"> 
+								@:<span class="etiqueta">*@
+                                    @label
+								@*@Html.Label(answer.Sentence)*@
+								@*@:</span> 
+								@:<span class="form-el">*@
+                                    @:</div> 
+                                    @:<div class="c1-5">
+                                    @Html.TextBox("tt" + answer.Id.ToString(), "", new { style = "width:400px" })
+								@*@:</span> *@
+                                    @:</div>
+                                }  
+                                @:</div>              
+                            }
+                        
+                            <div class="alert error"><label id="@question.Id"></label></div>
+                            <br />
+
+
+                            i++;
+                            
+                            @:</div>
+                        } 
+                        @:</div>  
+                                   
+                    }	
+                    
+                    <div>
+                        <div class="alert error"><label id="generalerrors"></label></div>
+                        <br/>
+                       
+                            <div class="row space-bot"> 
+                                <span class="etiqueta">
+                                </span>
+                                <span class="form-el">
+                                    <input type="submit" value="Enviar Resultados" class="ebutton2 blue" />  
+                                </span>
+                        </div>
+		            </div>
+                </div>
+                <br/>
+                <br/>	 
+                <div class="page_navigation"></div> 
+               <br/>
+                <div class="up">
+                    <input type="button" onclick="window.scroll(0,0)" value="" class="upbutton" />
+                </div>  
+                
+                <br/> 
+                            
+                
+                <br/>
+                   
+            </div>
+            
+		</div>
+        </fieldset>
+   
+    }
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery-1.2.6.pack.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.pajinate.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+       
+        $('#paging_container1').pajinate({
+             items_per_page: 1
+        });
+    });
+			
+		</script>

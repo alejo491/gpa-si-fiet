@@ -1,0 +1,72 @@
+﻿@model SIFIET.Models.AnswerChoice
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<div class="grid">
+
+    <div class="c12">
+
+           <h2>Eliminar Opción de Respuesta</h2>
+
+<h3>¿Está seguro que desea eliminar esta opción?</h3>
+
+    </div>
+
+    <div class="c12">
+
+       <div class="c9 first" id=”content”>
+
+          <fieldset>
+    <legend>Opción de Respuesta</legend>
+    <br/>
+
+    <div class="display-label">Pregunta</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Question.Sentence)
+    </div>
+    <br/>
+
+    <div class="display-label">Enunciado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Sentence)
+    </div>
+    <br/>
+
+    <div class="display-label">Valor Cuantitativo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumericValue)
+    </div>
+    <br/>
+
+    <div class="display-label">Tipo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type)
+    </div>
+    <br/>
+
+    <div class="display-label">Número de orden</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnswerNumber)
+    </div>
+    <br/>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Eliminar" class="ebutton2 blue"/> &nbsp; @Html.ActionLink("Regresar al listado", "Index", routeValues: new { id = Model.IdQuestion }, htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}
+
+       </div>
+
+       <div class="c3 last" id=”layout”>@Html.Partial("_LayoutSideBar")</div>
+
+    </div>
+
+    &nbsp;
+</div>
+
+
+

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SIFIET.Models.Elective>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Electivas</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Electiva", "Create", null, htmlAttributes: new { @class = "ebutton blue" })
+</p>
+<table>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+
+            <div class = " left "> @Html.ActionLink(" ", "Edit", new { }, htmlAttributes: new { @class = "btnedit", title = "Editar Electiva" }) &nbsp</div> 
+            <div class = " left "> @Html.ActionLink(" ", "Details", new { }, htmlAttributes: new { @class = "btndetails", title = "Ver Electiva" }) &nbsp</div>
+                
+        </td>
+    </tr>
+}
+
+</table>
+
+

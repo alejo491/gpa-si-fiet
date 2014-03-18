@@ -1,0 +1,53 @@
+﻿@model SIFIET.Models.Survey
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="grid">
+	<div class="c12">
+    		<h2>Editar Encuesta</h2>
+	</div>
+	<div class="c12">
+    	<div class="c9 first" id=”contenido”>
+        	
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Encuesta</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="display-label">Nombre</div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            <div class="alert error">
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <br />
+
+       <div class="display-label">Objetivo</div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Aim)
+            <div class="alert error">
+            @Html.ValidationMessageFor(model => model.Aim)
+            </div>
+        </div>
+        <br />
+
+        <p>
+            <input type="submit" value="Actualizar" class="ebutton2 blue" /> &nbsp; @Html.ActionLink("Cancelar", "Index", null, new {@class="ebutton blue"})
+        </p>
+    </fieldset>
+}
+<br />
+    	</div>
+    	<div class="c3 last" id=”layout”>@Html.Partial("_LayoutSideBar")</div>
+	</div>
+	&nbsp;
+</div>
+

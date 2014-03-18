@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Enviar Encuesta General";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#txtFechaDesde").datepicker({ dateFormat: 'dd/mm/yy' });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#txtFechaHasta").datepicker({ dateFormat: 'dd/mm/yy' });
+    });
+</script>
+<div class="grid">
+    <div class="c12">
+        <h2>
+            Enviar Encuesta General
+        </h2>
+        <div class="c12 first">
+            <div class="alert error">
+                @if ((string) TempData["ErrorDatos"] != "")
+                {
+                    <p>@TempData["ErrorDatos"]</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="c12">
+        <div class="c9 first" id="content">
+                @using (Html.BeginForm())
+                {
+                    <fieldset>
+                        <div class="c12 first">
+                            <div class="c12 first">
+                                <h3>
+                                    Seleccione destinatarios</h3>
+                            </div>
+                            <div class="c4 first">
+                                <div class="editor-label">
+                                    <p>
+                                        Encuesta Dirigida a:
+                                    </p>
+                                </div>
+                                <div class="editor-field">
+                                    <p>
+                                        @if ((bool)ViewBag.Seleccionado1)
+                                        {
+                                            ViewBag.Seleccionado1 = true;
+                                            ViewBag.Seleccionado2 = false;
+                                            TempData["Seleccionado"] = "true";
+                                            @Html.RadioButton("Dirigida", true, true)@:Egresados
+                                        <br />
+                                            @Html.RadioButton("Dirigida", false, false)@:Jefes de Egresados
+                                    }
+                                        else
+                                        {
+                                            TempData["Seleccionado"] = "false";
+                                            ViewBag.Seleccionado1 = false;
+                                            ViewBag.Seleccionado2 = true;
+                                            @Html.RadioButton("Dirigida", true, false)@:Egresados
+                                        <br />
+                                            @Html.RadioButton("Dirigida", false, true)@:Jefes de Egresados
+                                                                            }
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="c4 last">
+                                <div class="editor-label">
+                                    <p>
+                                        Seleccione los Programas:
+                                    </p>
+                                </div>
+                                <div class="editor-field">
+                                    <p>
+                                        @Html.CheckBox("IngSistemas", (bool)ViewBag.Seleccionado3)Ingeniería de Sistemas
+                                        <br />
+                                        @Html.CheckBox("IngElectronica", (bool)ViewBag.Seleccionado4)Ingeniería Electrónica
+                                        y Telecomunicaciones
+                                        <br />
+                                        @Html.CheckBox("IngAutomatica", (bool)ViewBag.Seleccionado5)Ingeniería en Automática
+                                        Industrial
+                                        <br />
+                                        @Html.CheckBox("Telematica", (bool)ViewBag.Seleccionado6)Tecnología en Telemática
+                                        @if ((string) TempData["Error2"] != "")
+                                        {
+                                            <div class="alert error">
+                                                <p>@TempData["Error2"]</p>
+                                            </div>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c12 first">
+                            <div class="c12 first">
+                                <h3>
+                                    Seleccione filtro de fecha por graduación</h3>
+                            </div>
+                            <div class="c4 first">
+                                <div class="editor-label">
+                                    Egresados Desde:
+                                </div>
+                                <div class="editor-field">
+                                    <p>
+                                        @*  @Html.TextBox("txtFechaDesde", "", new { @class = "hasDatepicker", @type = "date", @placeholder = "MM/DD/AAAA" })*@
+                                        @*<input id="datepicker" name="" placeholder="mm/dd/yyyy" type="date">*@
+                                        @Html.TextBox("txtFechaDesde", (string)ViewBag.FechaDesde, new { @type = "date", @placeholder = "AAAA/MM/DD" })
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="c4 last">
+                                <div class="editor-label">
+                                    Egresados Hasta:
+                                </div>
+                                <div class="editor-field">
+                                    <p>
+                                        @Html.TextBox("txtFechaHasta", (string)ViewBag.FechaHasta, new { @type = "date", @placeholder = "AAAA/MM/DD" })</p>
+                                </div>
+                            </div>
+                            <div class="c12 first">
+                                @if ((string) TempData["Error1"] != "")
+                                {
+                                    <div class="alert error">
+                                        <p>@TempData["Error1"]</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="c12 first">
+                            <div class="c12 first">
+                                <h3>
+                                    Edite el asunto y mensaje del correo</h3>
+                            </div>
+                            <div class="c11 first">
+                                <div class="editor-label">
+                                    Asunto:
+                                </div>
+                                <div class="editor-field">
+                                    @Html.TextArea("txtAsunto", (string)ViewBag.Asunto, new { style = "width:700px;height:100px" })
+                                </div>
+                                @if ((string) TempData["Error3"] != "")
+                                {
+                                    <div class="alert error">
+                                        <p>@TempData["Error3"]</p>
+                                    </div>
+                                }
+                                <div class="editor-label">
+                                    Mensaje:
+                                </div>
+                                <div class="editor-field">
+                                    <p>
+                                        @Html.TextArea("txtMensaje", (string)ViewBag.Mensaje, new { style = "width:700px;height:100px;" })
+                                    </p>
+                                </div>
+                                @if ((string) TempData["Error4"] != "")
+                                {
+                                    <div class="alert error">
+                                        <p>@TempData["Error4"]</p>
+                                    </div>
+                                }
+                                <div>
+                                    <p>
+                                        <input type="submit" value="Vista Previa" class="ebutton2 blue" />&nbsp; @Html.ActionLink("Regresar", "Index", "Surveys",new {id=ViewBag.idSurvey}, new { @class = "ebutton blue" })
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+         </div>
+                <div class="c3 last" id="layout">@Html.Partial("_LayoutSideBar")</div>
+    </div>
+    &nbsp;
+</div>

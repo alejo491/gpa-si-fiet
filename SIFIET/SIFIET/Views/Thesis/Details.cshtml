@@ -1,0 +1,29 @@
+﻿@model SIFIET.Models.Thesis
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<fieldset>
+    <legend>Tesis</legend>
+
+    <div class="display-label">Estudio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Study.Grade)
+    </div>
+
+    <div class="display-label">Título</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Descripción</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div>
+          @Html.ActionLink("Regresar", "Index","", htmlAttributes: new { @class = "ebutton blue" })
+    </div>
+</fieldset>

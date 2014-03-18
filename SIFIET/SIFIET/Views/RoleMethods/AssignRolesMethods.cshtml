@@ -1,0 +1,63 @@
+﻿@using SIFIET.Models
+@model SIFIET.Models.ViewModels.RoleMethodsViewModel
+
+@{
+ViewBag.Title = "Asignar permisos de acceso al rol";
+}
+
+<div class="grid">
+    <div class="c12">
+        <h2>Cambiar permisos de acceso al rol: <strong><i>@Model.aspnet_Role.RoleName</i></strong></h2>
+    </div>
+    <div class="c12">
+        <div class="c6 first">
+            @using (Html.BeginForm(new {id = Model.aspnet_Role.RoleId}))
+            {
+                <fieldset>
+                    <legend>Seleccione las acciones que este rol podra ejecutar</legend>
+                    <br/>
+                    @{
+                        int i = 0;
+                        foreach (SecureController secure in ViewBag.ControllerList)
+                        {
+                            string refacor = "#acc" + i;
+                            string idaccor = "acc" + i;
+                            @:<div class="accordion controllergroup">   
+                            @: <section>
+                            @:<a href="@refacor" id="@idaccor">@secure.Name</a>  
+                            @:<p>  
+                            foreach (var category in @Model.MethodChecklist)
+                            {
+                                if (category.Key.FullName.Contains(secure.Name))
+                                {                               
+                                    @Html.CheckBox(category.Key.FullName, category.Value) @category.Key.FullName                                                             
+                                    @:<br />
+                                }
+
+                            }
+                            i++;
+                            @:</p> 
+                            @:</section>
+                            @:</div>
+                        }
+                    }
+                    <br />
+                    <p>           
+                        <input type="submit" value="Guardar" class="ebutton2 blue"/> &nbsp;
+                        @Html.ActionLink("Regresar al listado", "Index", "Aspnet_Roles", null, new { @class = "ebutton blue" })
+                    </p>
+                </fieldset>
+            }
+        </div>
+        <div class="c3"></div>
+        <div class="c3 last">
+             @Html.Partial("_LayoutSeguridad")
+        </div>
+    </div>
+    &nbsp;
+</div>
+
+
+
+
+

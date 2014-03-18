@@ -1,0 +1,105 @@
+﻿@model PagedList.IPagedList<SIFIET.Models.Post> 
+           
+
+@{
+    ViewBag.Title = "Noticias";
+}
+
+<h2>Noticias</h2>
+<div id="prueba"></div>
+<form method="get" action="/Post/GlobalSearch">
+    <fieldset>
+        <legend>Buscador de noticias: </legend>
+        <div class="editor-field">
+          Buscar noticias que contengan: @Html.TextBox("criteria", ViewBag.CurrentFilter as string)&nbsp<input type="submit" value="Buscar" class="ebutton blue" />   
+        </div>
+            
+    </fieldset>
+</form>
+</form>
+<form method="get" action="/Post/GlobalFilter">
+    <fieldset>
+        <legend>Filtar Noticias Por: </legend>
+        <div class="editor-field">        
+            @Html.DropDownList("Filtros", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Filtrar" class="ebutton blue" />   
+        </div>
+           
+    </fieldset>
+</form>
+<table>
+    <tr>
+        <th width = "140"  >
+            Usuario
+        </th>
+        <th width = "200" >
+            Título
+        </th>
+        <th width = "400" >
+            Resumen
+        </th>
+        <th width = "165">
+            Fecha de Publicación
+        </th>
+        <th width = "130">
+            Ir a Publicación
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td >
+                @Html.DisplayFor(modelItem => item.User.FirstNames)
+                @Html.DisplayFor(modelItem => item.User.LastNames)
+            </td>
+            <td style="text-align: justify;">
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td style="text-align: justify;">
+                @Html.DisplayFor(modelItem => item.Abstract)
+            </td>
+            <td style="text-align: center;">
+                @Html.DisplayFor(modelItem => item.PublicationDate)
+            </td>
+            <td style="text-align: center;">
+             @Html.ActionLink("Ir", "ShowPost", new { id = item.Id }, htmlAttributes: new { @title = "IR", @class = "ebutton blue" }) 
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    de @Model.PageCount
+     
+    @if (Model.HasPreviousPage)
+    {
+        @Html.ActionLink("<<", "GlobalIndex", new { page = 1 })
+        @Html.Raw(" ");
+        @Html.ActionLink("< Anterior", "GlobalIndex", new { page = Model.PageNumber - 1 })
+    }
+    else
+    {
+        @:<<
+        @Html.Raw("   ");
+        @:< Anterior
+    }
+     
+    @if (Model.HasNextPage)
+    {
+        @Html.ActionLink("Siguiente>", "GlobalIndex", new { page = Model.PageNumber + 1 })
+        @Html.Raw(" ");
+        @Html.ActionLink(">>", "GlobalIndex", new { page = Model.PageCount })
+    }
+    else
+    {
+        @:Siguiente >
+        @Html.Raw(" ")
+        @:>>
+    }
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" 
+type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/menu.js")" type="text/javascript"></script>

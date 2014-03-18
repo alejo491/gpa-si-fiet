@@ -1,0 +1,97 @@
+﻿@model IEnumerable<SIFIET.Models.AnswerChoice>
+
+@{
+    ViewBag.Title = "Listado de Opciones de Respuesta";
+}
+
+
+<div class="grid">
+    <div class="c12">
+        <h2>Opciones de Respuesta de la Pregunta "@ViewBag.Question.Sentence"</h2>
+
+        <div class="alert success">
+            @TempData["Success"]
+        </div>
+        <br/>
+
+        @*<div class="validation-summary-success">@TempData["Success"]</div>*@
+
+        <p>
+            @Html.ActionLink("Crear Opcion de Respuesta", "Create", new { id = ViewBag.Question.Id }, htmlAttributes: new { @class = "ebutton blue" })
+        </p>
+    </div>
+    <div class="c12">
+        <div class="c9 first">
+            
+                <table>
+                    <tr class="head">
+                        <th>
+                            Enunciado
+                        </th>
+                        <th>
+                            Valor Cuantitativo
+                        </th>
+                        <th>
+                           <center>Tipo</center> 
+                        </th>
+                        <th>
+                            Número de Orden 
+                        </th>
+                        <th>Acciones</th>
+                    </tr>
+
+                @foreach (var item in Model)
+                {
+   
+                    @:<tr class="even">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sentence)
+                        </td>
+                        <td>
+                           @Html.DisplayFor(modelItem => item.NumericValue)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AnswerNumber)
+                        </td>
+                        <td>
+                        <div class="c12">
+                                              <div class="c1 first">
+                                                  
+                            @Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btnedit", @title = "Editar" }) 
+                            </div>
+                                              <div class="c1">
+                            @Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btndetails", @title = "Detalles" }) 
+                            </div>
+                                              <div class="c1">
+                            @Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btndelete", @title = "Eliminar" })
+                            </div>
+                         </div>
+                        </td>
+                    @:</tr>
+    
+                }
+
+                </table>
+                  <div class="c12">
+        <h2> </h2>
+        <h2> </h2>
+        
+
+        @*<div class="validation-summary-success">@TempData["Success"]</div>*@
+
+        <p>
+            @Html.ActionLink("Regresar al Listado de Preguntas", "../Questions/Index", new { id = ViewBag.Question.IdTopic }, htmlAttributes: new { @class = "ebutton blue" })
+        </p>
+    </div>
+        </div>
+
+        <div class="c3 last">@Html.Partial("_LayoutSideBar")</div>
+    </div>
+    &nbsp;
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/menu.js")" type="text/javascript"></script>

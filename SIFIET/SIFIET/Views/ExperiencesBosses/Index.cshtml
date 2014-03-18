@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SIFIET.Models.ExperiencesBoss>
+
+@{
+    ViewBag.Title = "Index";
+    var wizard = ViewBag.WizardStep;
+    if (wizard == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutW.cshtml";
+    }
+}
+
+<h2>Lista De Jefes Directos</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create", "", htmlAttributes: new { @class = "ebutton blue" })
+</p>
+<table>
+    <tr>
+        <th>
+            Nombre Jefe
+        </th>
+        <th>
+            Cargo Desempeñado
+        </th>
+        <th>
+            Fecha Inicio
+        </th>
+        <th>
+            Fecha Fin
+        </th>
+        <th>Acciones</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Boss.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Experience.Charge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            <div class = " left ">@Html.ActionLink(" ", "Edit", new { id = item.Id }, htmlAttributes: new { @class = "btnedit", @title = "Editar" }) &nbsp</div> 
+            <div class = " left ">@Html.ActionLink("Editar", "Edit", new { id = item.Id }) |&nbsp</div> 
+            <div class = " left ">@Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btndetails", @title = "Detalles" }) &nbsp</div> 
+            <div class = " left ">@Html.ActionLink("Ver", "Details", new { id = item.Id }) |&nbsp</div> 
+            <div class = " left ">@Html.ActionLink(" ", "Delete", new { id = item.Id }, htmlAttributes: new { @class = "btndelete", @title = "Eliminar" }) &nbsp</div> 
+            <div class = " left ">@Html.ActionLink("Eliminar", "Delete") &nbsp</div> 
+        </td>
+    </tr>
+}
+
+</table>

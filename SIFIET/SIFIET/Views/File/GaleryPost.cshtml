@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SIFIET.Models.File>
+
+@{
+    Layout = "~/Views/Shared/_Layout_galery.cshtml"; 
+}
+@if (Model.Count() > 0)
+{
+    <h2>Archivos Pertenecientes a la Noticia</h2>
+}
+
+@foreach (var item in Model) {
+    <div> 
+               <a href=@Html.DisplayFor(modelItem => item.Path)>@item.Name</a>              
+    </div>
+}
+
+ <script type="text/javascript">
+        $(function ImageLB() {
+            $('#gallery a').lightBox({ 
+                imageLoading: '/Content/lightbox-ico-loading.gif',
+                imageBtnClose: '/Content/lightbox-btn-close.gif',
+                imageBtnPrev: '/Content/lightbox-btn-prev.gif',
+                imageBtnNext: '/Content/lightbox-btn-next.gif',
+                
+            });
+        });
+    </script>

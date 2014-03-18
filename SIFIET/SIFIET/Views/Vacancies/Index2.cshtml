@@ -1,0 +1,26 @@
+﻿@model IEnumerable<SIFIET.Models.Vacancy>
+
+<h2>
+  Bolsa de Empleo - Últimas Vacantes registradas
+</h2>
+@foreach (var item in Model)
+{
+    <div>
+       <a href="Vacancies/Details/@item.Id"> <h3 class="title">@Html.DisplayFor(modelItem => item.Charge) en @Html.DisplayFor(modelItem => item.Company.Name) </h3></a>
+        
+            
+        <div>         
+            <p>@Html.DisplayFor(modelItem => item.Description)
+            <br/>
+            @Html.ActionLink(" ", "Details", new { id = item.Id }, htmlAttributes: new { @class = "btndetails2", title = "Ver más" }) 
+            </p>   
+
+            
+           
+                       
+        </div>
+    </div>
+ <br/>
+}
+<br/>
+  @Html.ActionLink("Ver todas las vacantes", "Index", null, htmlAttributes: new { @class = "ebutton blue", title = "Ver todas las vacantes registradas" }) 

@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Enviar Encuesta Específica";
+}
+
+<script type="text/css" src="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script type="text/javascript" language="javascript"> 
+    $(document).ready(function () {
+        $('#txtDestinatario').autocomplete({ 
+            source: '@Url.Action("Autocomplete")' 
+        }); 
+    }) 
+    </script>
+<h2>Enviar Encuesta Específica</h2>
+
+@using (Html.BeginForm())
+{
+	<fieldset>
+        <div class="c12 first">
+            <div class="c11 first">
+                <div class="ui-widget"></div>
+                <div class="editor-label">
+                    Para:
+                </div>
+                <div class="editor-field">
+                    <div class="ui-widget">
+                        <input type="text" name="txtDestinatario" id="txtDestinatario" style = "width:400px" />
+                    </div>
+                </div>
+                @if (TempData["ErrorD"] != "")
+                {
+                    <div class="alert error">
+                        <p>@TempData["ErrorD"]</p>
+                    </div>
+                }
+                <div class="editor-label">
+                    Asunto:
+                </div>
+                <div class="editor-field">
+                    @Html.TextArea("txtAsunto", (string)ViewBag.Asunto, new { style = "width:700px;height:100px" })
+                </div>
+                @if (TempData["ErrorA"] != "")
+                {
+                    <div class="alert error">
+                        <p>@TempData["ErrorA"]</p>
+                    </div>
+                }
+                <div class="editor-label">
+                    Mensaje:
+                </div>
+                <div class="editor-field">
+                    <p>
+                        @Html.TextArea("txtMensaje", (string)ViewBag.Mensaje, new { style = "width:700px;height:100px;" })
+                    </p>
+                </div>
+                @if (TempData["ErrorM"] != "")
+                {
+                    <div class="alert error">
+                        <p>@TempData["ErrorM"]</p>
+                    </div>
+                }
+                <div>
+                    <p>
+                        <input type="submit" value="Vista Previa" class="ebutton2 blue" />&nbsp; @Html.ActionLink("Regresar", "Index", "Surveys", new { id = ViewBag.idSurvey }, new { @class = "ebutton blue" })
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </fieldset>
+}

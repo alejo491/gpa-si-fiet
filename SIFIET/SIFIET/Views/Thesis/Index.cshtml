@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SIFIET.Models.Thesis>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tesis</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Thesis", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            Estudio
+        </th>
+        <th>
+            Título
+        </th>
+        <th>
+            Descripción
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Study.Grade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            <div class = " left "> @Html.ActionLink(" ", "Edit", new {}, htmlAttributes: new { @class = "btnedit", title = "Editar Tésis" }) &nbsp</div>
+            <div class = " left "> @Html.ActionLink(" ", "Details", new {}, htmlAttributes: new { @class = "btndetails", title = "Ver Tésis" }) &nbsp</div>     
+        </td>
+    </tr>
+}
+
+</table>

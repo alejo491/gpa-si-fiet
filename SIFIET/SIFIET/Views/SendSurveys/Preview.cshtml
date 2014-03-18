@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Vista Previa";
+}
+<div class="grid">
+    <div class="c12">
+        <h2>
+            Vista Previa</h2>
+    </div>
+    <div class="c12">
+        <div class="c9 first" id="”contenido”">
+            <h3>
+                Asunto: @ViewBag.Subject
+            </h3>
+            <div>
+                @using (Html.BeginForm()) {
+                    <fieldset style="width: 750px">
+                        <br />
+                        <div>
+                            @Html.Raw((string)ViewData["Body"])
+                        </div>
+                    </fieldset>
+                    <div>
+                        <p>
+                            <input type="submit" value="Enviar" class="ebutton2 blue" />&nbsp; @Html.ActionLink("Regresar", "Send", "SendSurveys", routeValues: new { id = ViewBag.Survey.Id }, htmlAttributes: new { @class = "ebutton blue" })
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="c3 last" id="”layout”">@Html.Partial("_LayoutSideBar")</div>
+    </div>
+    &nbsp;
+</div>

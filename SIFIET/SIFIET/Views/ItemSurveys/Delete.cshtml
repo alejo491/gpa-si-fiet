@@ -1,0 +1,38 @@
+﻿@model SIFIET.Models.ItemSurvey
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Seguro que dea Eliminar este Item?</h3>
+
+<fieldset>
+    <legend><h2>Item de Encuesta</h2></legend>
+
+    <div class="display-label"><h2>Reporte</h2></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Report.Description)
+    </div>
+
+    <div class="display-label"><h2>Pregunta</h2></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Question)
+    </div>
+
+    <div class="display-label"><h2>Tipo de Gráfico</h2></div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GraphicType)
+    </div>
+
+    
+
+    
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Eliminar" class="ebutton2 blue"/>   
+        @Html.ActionLink("Regresar al Listado", "../Items/GeneralItems", new { id = Model.IdReport }, htmlAttributes: new { @class = "ebutton blue" })
+    </p>
+}

@@ -1,0 +1,266 @@
+﻿@using System.Data
+@using System.Data.Entity
+@using System.Text
+@using System.Web.Script.Serialization
+@using System.Xml
+@using SIFIET.Models.ViewModels
+@{
+    ViewBag.Title = @ViewBag.ReportName;
+    List<ItemReportViewModel> items = ViewBag.Items;
+    int id = 0;
+    int t = 0;
+    Layout = "~/Views/Shared/_LayoutW.cshtml";
+}
+<div id="impresion">
+    <div class="c12 first">
+    
+        
+        <div class="c2"></div>
+        <div class="c8" style="border: black 1px">
+            <p align="right">
+                Fecha: @ViewBag.ReportDate
+            </p>
+            <p align="justify">
+                @ViewBag.ReportName
+            </p>
+            <br/>
+            <hr/>
+            @foreach (var item in items)
+            {
+                <div class="pagina">
+                <div>
+                
+                    @{
+                if (item.Type)
+                {
+                            @: <h3>Pregunta:</h3>
+                            @: <p align="justify">@item.Sentence</p>                  
+                        }
+
+                string container = "chartContainer" + id;
+                string chart = "chart" + id;
+                string chartrender = chart + ".render();";
+                DataTable dt = item.Table;
+                        <table>
+                            <thead>
+                                <tr>
+                                    @foreach (DataColumn column in dt.Columns)
+                                    {
+                                        <th>@column.Caption</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (DataRow row in dt.Rows)
+                                {
+                                    if (t % 2 == 0)
+                                    {
+                                        @:<tr>
+                                    }
+                                    else
+                                    {
+                                        @:<tr class="even">
+                                    }
+
+                                    foreach (var cell in row.ItemArray)
+                                    {
+                                        <td>@cell.ToString()</td>
+                                    }
+                                    @:</tr>
+                                    t++;
+                                }
+                            </tbody>
+                        </table>
+                        
+                        <br />
+
+                                if (item.GraphicType != "Ninguno")
+                                {
+                            <div id="@container" style="height: 300px; width: 100%;">
+                            </div>
+                                }
+                                else
+                                {
+                            <div id="@container" style="height: 0px; width: 100%; display:none;">
+                            </div>
+                                }
+
+
+
+
+                                id++;
+                    }
+                
+            
+                </div>
+                <div>
+                    <p>Total: @item.DataNumber </p>
+                    <p align="center">Pagina @id</p>
+                </div>
+                </div>
+                <hr/>
+            
+                //id++;
+            }
+        </div>
+        <div class="c2"></div>
+    
+    </div>
+    &nbsp;
+    
+<script type="text/javascript">
+window.onload = function() {
+@{
+    id = 0;
+}
+@foreach (var item2 in items)
+{
+    string container = @"chartContainer" + id;
+    string chart = @"chart" + id;
+    string chartrender = chart + ".render();";
+    string question = @item2.Sentence.Normalize(NormalizationForm.FormC);
+    string grafico = @item2.GraphicType;
+    string tipo = "";
+    string k = "eé";
+    int j = 10;
+    tipo = grafico == "Pastel" ? "pie" : "bar";
+
+
+    if (tipo == "pie")
+    {
+    <text>var @chart = new CanvasJS.Chart("@container",         
+    {
+        title: {
+                           
+            text: "",
+        },
+        axisY:{
+            minimum: 0,
+        },
+        data: [
+            {
+                type: "@Html.Raw(tipo)",
+
+                showInLegend: true,
+                dataPoints: [
+                    @foreach (KeyValuePair<string, int> key in item2.DataList.First())
+                    {
+                        var value = @key.Value;
+                        var sentence = @key.Key;
+                        const string replaceWith = "";
+
+                        sentence = sentence.Replace("\r\n", replaceWith).Replace("\n", replaceWith).Replace("\r", replaceWith);
+
+                        if (grafico == "Pastel")
+                        {                                 
+                            <text>{  y: @value, legendText:"@Html.Raw(sentence)", indexLabel: "@Html.Raw(sentence)" },</text>
+                        }
+                        else
+                        {
+                            <text>{ y: @value, label: "@Html.Raw(sentence)"},</text>
+                        }
+                        j += 10;
+
+                    }                            
+                ]
+            }
+        ]
+    });
+
+    @chartrender</text>
+    }
+    else
+    {
+    <text>var @chart = new CanvasJS.Chart("@container",         
+    {
+        title: {                            
+                text: "",
+        },
+        axisY:{
+            minimum: 0,
+        },
+        data: [
+                            
+                @foreach (var val in item2.DataList)
+                {
+                    @:{
+                    @:type: "@tipo",
+
+                        @:showInLegend: false,
+                        @:dataPoints: [
+                    foreach (KeyValuePair<string, int> key in val)
+                    {
+
+
+                        var value = key.Value;
+                        var sentence = key.Key;
+                        const string replaceWith = "";
+                        sentence = sentence.Replace("\r\n", replaceWith).Replace("\n", replaceWith).Replace("\r", replaceWith);
+                        if (grafico == "Pastel")
+                        {
+                                                                                       
+                            <text>{  y: @value, legendText:"@Html.Raw(sentence)", indexLabel: "@Html.Raw(sentence)" },</text>
+                        }
+                        else
+                        {
+                            <text>{ y: @value, label: "@Html.Raw(sentence)"},</text>
+                        }
+                        j += 10;
+
+                    }
+                    @: ]},
+                }
+                            
+        ]
+    });
+
+@chartrender</text>
+    }
+
+
+    id++;
+}
+}
+</script>
+    
+    
+
+</div>
+
+
+    <div class="c5">
+        &nbsp;
+    </div>
+<div class="c2" align="center">
+    <p>
+        <input type="button" value="Imprimir" id="btnImprimir" class="ebutton blue" />
+    </p>
+</div>
+
+<div class="c5" align="center">
+        &nbsp;
+    </div>
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/canvasjs.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.printElement.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnImprimir').click(function () {
+            window.print();
+        });
+    });
+</script>
