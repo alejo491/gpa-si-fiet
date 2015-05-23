@@ -1,0 +1,1 @@
+Sistema que se encarga de gestionar toda la información concerniente a los programas y las asignaturas de la Facultad Electrónica y Telecomunicaciones de la Universidad del Cauca.
